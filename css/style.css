@@ -1,3 +1,32 @@
+@media (max-width: 824px) {
+    :root {
+        --dynamicWidth: 340px;
+    }
+
+    .titleYourQuizzes {
+        justify-content: space-between;
+    }
+}
+@media (min-width: 825px) and (max-width: 1178px) {
+    :root {
+        --dynamicWidth: 694px;
+    }
+
+    /* .titleYourQuizzes {
+        justify-content: space-between;
+    } */
+}
+@media (min-width: 1179px) {
+    :root {
+        --dynamicWidth: 1048px;
+    }
+
+    /* .titleYourQuizzes {
+        justify-content: space-between;
+    } */
+}
+
+
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #FAFAFA;
@@ -10,6 +39,7 @@ header {
     top: 0;
     left: 0;
     right: 0;
+    z-index: 1;
     
     height: 69px;
     display: flex;
@@ -36,10 +66,16 @@ main {
     align-items: center;
 }
 
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 /* yourQuizzesEmpty */
 
 .yourQuizzesEmpty {
-    width: 340px;
+    width: var(--dynamicWidth);
     height: 181px;
     border-radius: 5px;
     border: 1px dashed #D4D4D4;
@@ -70,27 +106,53 @@ main {
     color: #EC362D;
 }
 
-/* yourQuizzes */
+/* yourQuizzes and allQuizzes */
 
-/* allQuizzes */
-
-.allQuizzes {
-    width: 340px;
+.allQuizzes, .yourQuizzes {
     margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titleYourQuizzes {
+    display: flex;
+    align-items: center;
+    width: var(--dynamicWidth);
+}
+
+.titleYourQuizzes ion-icon {
+    font-size: 30px;
+    color: #EC362D;
+}
+
+.yourQuizzes p {
+    font-size: 20px;
+    font-weight: 700;
+    color: black;
+    margin-right: 10px;
 }
 
 .allQuizzes > p {
+    width: var(--dynamicWidth);
     font-size: 20px;
     font-weight: 700;
     color: black;
 }
 
-.allQuizzes .question {
-    margin-top: 14px;
+.quizzes {
+    margin: 0 50px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.quizz {
+    margin: 7px;
     position: relative;
 }
 
-.allQuizzes .gradient {
+.gradient {
     position: absolute;
     background: linear-gradient(#FFFFFF00, #00000030, #000000FF);
     width: 100%;
@@ -98,7 +160,7 @@ main {
     border-radius: 5px;
 }
 
-.question > p {
+.quizz > p {
     position: absolute;
     bottom: 0;
     width: 300px;
@@ -107,7 +169,15 @@ main {
     color: white;
 }
 
-.allQuizzes .question img {
+.allQuizzes .quizz img, .yourQuizzes .quizz img {
     width: 340px;
+    height: 181px;
+    object-fit: cover;
     border-radius: 5px;
+}
+
+/* Utilitários */
+
+.hidden {
+    display: none;
 }

@@ -176,8 +176,135 @@ main {
     border-radius: 5px;
 }
 
+
+
+
+/* edit */
+
+.edit {
+    max-width: 600px;
+    width: 100%;
+}
+
+.editPage {
+    padding: 60px 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: solid 1px grey;
+}
+
+.editPage > h2 {
+    font-size: 23px;
+}
+
+.editPage button {
+    font-size: 18px;
+    font-weight: 400;
+    border: none;
+    border-radius: 15px;
+    padding: 17px 40px;
+    cursor: pointer;
+}
+.nextStep-button {
+    color: white;
+    background-color: #EC362D;
+    margin-bottom: 10px;
+}
+.goHome-button {
+    background-color: rgba(0,0,0,0);
+    color: #818181;
+}
+
+.editPage-content {
+    width: 100%;
+    margin: 30px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+}
+
+.editSection {
+    padding: 20px 17px;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.editSection h3 {
+    font-size: 20px;
+}
+
+.editSection-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.editSection-header ion-icon{
+    font-size: 20px;
+    padding: 5px;
+    background-color: rgb(245, 245, 245);
+    border-radius: 5px;
+    transition: all 0.1s;
+    cursor: pointer;
+}
+.editSection-header ion-icon:hover {
+    background-color: rgb(231, 231, 231);
+}
+
+.editSection-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+.editSection-group-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.editSection input,
+.editSection textarea {
+    font-size: 19px;
+    padding: 14px 11px;
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+    font-family: 'Roboto', 'sans-serif';
+}
+.editSection input::placeholder,
+.editSection textarea::placeholder {
+    font-style: italic;
+    color: #BABABA;
+}
+
+.editSection textarea {
+    height: 177px;
+    resize: none;
+}
+
+.closed > .editSection-group {
+    display: none;
+}
+
+
+
 /* Utilitários */
 
 .hidden {
     display: none;
+}
+
+/* Auxiliar - APAGAR */
+
+.home, .play, .edit {
+    border-bottom: 5px solid;
 }

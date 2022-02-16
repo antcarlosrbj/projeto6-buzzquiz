@@ -11,19 +11,11 @@
     :root {
         --dynamicWidth: 694px;
     }
-
-    /* .titleYourQuizzes {
-        justify-content: space-between;
-    } */
 }
 @media (min-width: 1179px) {
     :root {
         --dynamicWidth: 1048px;
     }
-
-    /* .titleYourQuizzes {
-        justify-content: space-between;
-    } */
 }
 
 
@@ -173,7 +165,7 @@ main {
     color: white;
 }
 
-.allQuizzes .quizz img, .yourQuizzes .quizz img {
+.quizz img, .quizz img {
     width: 340px;
     height: 181px;
     object-fit: cover;

@@ -126,6 +126,23 @@ function toggleEditSection(button) {
     button.parentElement.parentElement.parentElement.classList.toggle("closed");
 }
 
+// Botões de adicionar
+
+function addQuestionButtonClicked() {
+    addNewQuestion();
+    loadEditPage('questions');
+}
+function addLevelButtonClicked() {
+    addNewLevel();
+    loadEditPage('levels');
+}
+function deleteQuestionButtonClicked(index) {
+    if (removeQuestion(index)) {loadEditPage('questions');}
+}
+function deleteLevelButtonClicked(index) {
+    if (removeLevel(index)) {loadEditPage('levels');}
+}
+
 // Navegar entre seções
 
 function editQuizz(quizzElement) {
@@ -147,8 +164,8 @@ function nextPage(nextPageKey) {
 
     if (validatePageInputs(nextPageKey)) {
         saveInputs(nextPageKey);
-        loadNextEditPage(nextPageKey);
-        showNextEditPage(nextPageKey);
+        loadEditPage(nextPageKey);
+        showEditPage(nextPageKey);
     }
 }
 
@@ -359,7 +376,6 @@ function clearInvalidTests () {
     })
 }
 
-
 function isValidHttpUrl(string) {
     let url;
     try { url = new URL(string); }
@@ -379,7 +395,7 @@ function getInputValue(elementId) {
 }
 
 function addNewQuestion() {
-    editingQuizz.questions.push(newQuestion());
+    editingQuizz.questions.push(newQuestion("", "", ""));
 }
 
 function removeQuestion(position) {
@@ -387,15 +403,18 @@ function removeQuestion(position) {
     if (len - 1 >= 3) {
         if (position < len && position >= 0) {
             editingQuizz.questions.splice(position, 1);
+            return true;
         }
-        else {
+        else if (!position) {
             editingQuizz.questions.pop();
+            return true;
         }
+        return false;
     }
 }
 
 function addNewLevel() {
-    editingQuizz.levels.push(newLevel());
+    editingQuizz.levels.push(newLevel("", "", "", ""));
 }
 
 function removeLevel(position) {
@@ -403,10 +422,13 @@ function removeLevel(position) {
     if (len - 1 >= 2) {
         if (position && position < len && position >= 0) {
             editingQuizz.levels.splice(position, 1);
+            return true;
         }
-        else {
+        else if (!position) {
             editingQuizz.levels.pop();
+            return true;
         }
+        return false;
     }
 }
 
@@ -473,9 +495,9 @@ function saveInputs(nextPageKey) {
 
 // Carregando na página
 
-function loadNextEditPage(nextPageKey) {
+function loadEditPage(pageKey) {
     let editPageContent = null;
-    switch (nextPageKey) {
+    switch (pageKey) {
         case 'info':
             const wrapper = editInfoPage.querySelector(".editSection-group-wrapper");
             wrapper.innerHTML = "";
@@ -509,7 +531,7 @@ function loadNextEditPage(nextPageKey) {
 
 // Trocar de página
 
-function showNextEditPage(nextPageKey) { }
+function showEditPage(pageKey) { }
 
 
 
@@ -587,7 +609,7 @@ function newEditQuestionElement(question, que_pos) {
         <div class="editSection-header">
             <h3>Pergunta ${que_pos + 1}</h3>
             <div>
-                <ion-icon name="trash-outline" onclick="deleteEditSection(this)"></ion-icon>
+                <ion-icon name="trash-outline" onclick="deleteQuestionButtonClicked(${que_pos})"></ion-icon>
                 <ion-icon name="create-outline" onclick="toggleEditSection(this)"></ion-icon>
             </div>
         </div>
@@ -663,7 +685,7 @@ function newEditLevelElement(level, lev_pos) {
         <div class="editSection-header" id="${id}">
             <h3>Nível ${lev_pos + 1}</h3>
             <div>
-                <ion-icon name="trash-outline" onclick="deleteEditSection(this)"></ion-icon>
+                <ion-icon name="trash-outline" onclick="deleteLevelButtonClicked(${lev_pos})"></ion-icon>
                 <ion-icon name="create-outline" onclick="toggleEditSection(this)"></ion-icon>
             </div>
         </div>
@@ -697,11 +719,3 @@ function newInputElement(fatherId, inp_name, tag, placeHolder, value) {
 
     return element;
 }
-
-
-
-// APAGAAAR
-
-nextPage('info');
-nextPage('questions');
-nextPage('levels');

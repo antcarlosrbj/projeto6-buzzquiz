@@ -3,12 +3,14 @@
 const LINK_QUIZZES = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
 
 const quizzes = []; // pull from API
-const userQuizzesIDs = []; // pull from LocalStorage
 const userQuizzes = []; // filter quizzes (userQuizzesIDs)
 const otherQuizzes = []; // filter quizzes (not userQuizzesIDs)
 
 let playingQuizz = {}; // object to play quizz
 let editingQuizz = null; // object to edit quizz
+
+let isEditingANewQuizz = true;
+let editingQuizzIsValidated = false;
 
 
 const homeScreen = document.querySelector(".home");
@@ -21,9 +23,30 @@ const editLevelsPage = document.querySelector("#edit-levels");
 const editSuccesPage = document.querySelector("#edit-success");
 
 
+// --------- LOCAL STORAGE -------
+
+// para guardar dados de id e key dos quizzes próprios
+// [ {id, key}, {id, key}, {id, key} ... ]
+let myQuizzesData = [];
+
+function pullFromLocalStorage() {
+    const obj = JSON.parse(window.localStorage.getItem("myQuizzesData"));
+    if (obj) {myQuizzesData = obj;}
+    else {myQuizzesData = []}
+}
+function pushToLocalStorage() {
+    window.localStorage.setItem("myQuizzesData", JSON.stringify(myQuizzesData));
+}
+
+// cuidado com essa função. apaga todo o histórico de ids/keys do computador do usuário
+function clearLocalStorage() {
+    window.localStorage.removeItem("myQuizzesData");
+}
+
+pullFromLocalStorage();
 
 
-// APGAR
+// Apagar
 const meuQuizz = {
     title: "Título do quizz quizz",
     image: "https://http.cat/411.jpg",
@@ -201,6 +224,9 @@ function validatePageInputs(nextPageKey) {
                 numOfInvalidInputs += validateInputs("level", "url", `l${que_lev}url`);
                 numOfInvalidInputs += validateInputs("level", "text", `l${que_lev}text`);
             })
+
+            editingQuizzIsValidated = true;
+
             break;
 
         default:
@@ -480,11 +506,11 @@ function saveInputs(nextPageKey) {
             break;
 
         case "success":
-            editingQuizz.questions.forEach((question, que_pos) => {
-                level.title = getInputValue(`l${que_pos}title`);
-                level.minValue = getInputValue(`l${que_pos}minValue`);
-                level.image = getInputValue(`l${que_pos}url`);
-                level.text = getInputValue(`l${que_pos}text`);
+            editingQuizz.levels.forEach((level, que_lev) => {
+                level.title = getInputValue(`l${que_lev}title`);
+                level.minValue = getInputValue(`l${que_lev}minValue`);
+                level.image = getInputValue(`l${que_lev}url`);
+                level.text = getInputValue(`l${que_lev}text`);
             })
             break;
 
@@ -533,25 +559,35 @@ function loadEditPage(pageKey) {
 
 function showEditPage(pageKey) { }
 
+// enviando quizz
 
-
-// Enviando para API e salvando localmente (novos e editados)
 
 function sendQuizz() {
-    // depois de validado na última etapa...
-    // se for um novo quizz
-    // enviar para API
-    // then
-    // salvar KEY e ID
-    // abrir página de sucesso
-    // catch
-    // console.log (não foi possível logar)
+
+    if (isEditingANewQuizz) {
+
+        const postNewQuizz = axios.post(LINK_QUIZZES, editingQuizz);
+        postNewQuizz.then(answer => {
+            pullFromLocalStorage();
+            myQuizzesData.push({
+                id: answer.data.id, key: answer.data.key
+            });
+            pushToLocalStorage();
+            pullFromLocalStorage();
+        });
+
+    }
+
     // se for um quizz já existente
     // enviar para API com ID e com header com KEY
     // then
     // abrir página de sucesso
     // fechar página de sucesso
 }
+
+
+
+
 
 // Create new objects
 
@@ -719,3 +755,6 @@ function newInputElement(fatherId, inp_name, tag, placeHolder, value) {
 
     return element;
 }
+
+
+nextPage("info");

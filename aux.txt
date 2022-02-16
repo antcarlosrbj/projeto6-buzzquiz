@@ -1,0 +1,20 @@
+Info
+- [x]  Título:          deve ter no mínimo 20 e no máximo 65 caracteres
+- [x]  URL:             deve ter formato de URL
+- [x]  # perguntas:     no mínimo 3 perguntas
+- [x]  # níveis:        no mínimo 2 níveis
+
+Perguntas
+- [x]  Title:           no mínimo 20 caracteres
+- [x]  Cor de fundo:    deve ser uma cor em hexadecimal (começar em "#", seguida de 6 caracteres hexadecimais, ou seja, números ou letras de A a F)
+Respostas
+- [x]  Textos:          não pode estar vazio
+- [x]  URL:             deve ter formato de URL
+- [ ]  Right:                só 1
+- [ ]  Wrong:                [2 - 3]
+
+Levels
+- [x]  Título:          mínimo de 10 caracteres
+- [x]  % minVal:        um número entre 0 e 100 (um level com 0)
+- [x]  URL:             deve ter formato de URL
+- [x]  Descrição:       mínimo de 30 caracteres

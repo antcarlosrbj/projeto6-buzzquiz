@@ -25,11 +25,11 @@
 
     <main>
         <div class="home">
-            <div class="yourQuizzesEmpty hidden">
+            <div class="yourQuizzesEmpty" onclick="editQuizz()">
                 <p>Você não criou nenhum quizz ainda :(</p>
                 <button>Criar Quizz</button>
             </div>
-            <div class="yourQuizzes">
+            <div class="yourQuizzes hidden">
                 <div class="titleYourQuizzes">
                     <p>Seus Quizzes</p>
                     <ion-icon name="add-circle"></ion-icon>
@@ -110,17 +110,17 @@
                         <div class="editSection-group">
 
                             <div class="editSection-group-wrapper">
-                                <input type="text" placeholder="Título do seu quizz">
-                                <input type="text" placeholder="URL da imagem do seu quizz">
-                                <input type="text" placeholder="Quantidade de perguntas do quizz">
-                                <input type="text" placeholder="Quantidade de níveis do quizz">
+                                <input type="text" placeholder="Título do seu quizz" class="title">
+                                <input type="text" placeholder="URL da imagem do seu quizz" class="url">
+                                <input type="text" placeholder="Quantidade de perguntas do quizz" class="numOfQuestions">
+                                <input type="text" placeholder="Quantidade de níveis do quizz" class="numOfLevels">
                             </div>
 
                         </div>
                     </div>
                 </div>
 
-                <button class="nextStep-button">Prosseguir pra criar perguntas</button>
+                <button class="nextStep-button" onclick="nextPage(this)">Prosseguir pra criar perguntas</button>
 
             </div>
 
@@ -176,7 +176,7 @@
                     <button class="add-button">Adicionar pergunta</button>
                 </div>
 
-                <button class="nextStep-button">Prosseguir pra criar níveis</button>
+                <button class="nextStep-button" onclick="nextPage(this)">Prosseguir pra criar níveis</button>
 
             </div>
 
@@ -209,7 +209,7 @@
                     <button class="add-button">Adicionar nível</button>
                 </div>
 
-                <button class="nextStep-button">Finalizar Quizz</button>
+                <button class="nextStep-button" onclick="nextPage(this)">Finalizar Quizz</button>
 
             </div>
 
@@ -223,7 +223,7 @@
                         <img src="https://scontent.ccdn.cloud/image/nospoiler/a6d0b152-9718-458f-a0ae-6d1f122e742c/i-simpson-5-1920x1080.jpg"
                             alt="Os Simpsons">
                     </div>
-                    
+
                 </div>
                 <button class="nextStep-button">Acessar Quizz</button>
                 <button class="goHome-button">Voltar para home</button>

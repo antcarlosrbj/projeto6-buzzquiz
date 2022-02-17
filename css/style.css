@@ -423,6 +423,7 @@ main {
     width: calc(0.9 * var(--widthQuestionBox) * var(--rateResult));
     font-size: 19px;
     font-weight: 700;
+    word-break: break-all;
 }
 
 .restartQuiz {

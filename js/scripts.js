@@ -218,26 +218,35 @@ function deleteLevelButtonClicked(index) {
     if (removeLevel(index)) {loadEditPage('levels');}
 }
 
-// Navegar entre seções
-function createNewQuizz() {
 
-    editingQuizz = meuQuizz2; // newQuizz() meuQuizz meuQuizz2
-    isEditingANewQuizz = true;
-    editingQuizzIsValidated = false;
 
-    showScreen('edit');
-    nextPage('info');
+function editQuizz(id) {
+
+    if (id){
+        editingQuizz = getQuizzFromId(id);
+        if (editingQuizz.id === id) {
+            isEditingANewQuizz = false;
+            editingQuizzIsValidated = false;
+            nextPage('info');
+            showScreen('edit');
+        }
+        else {
+            console.log("não achou quizz com esse id. nao da pra editar.");
+        }
+    }
+    else {
+        editingQuizz = meuQuizz2; // newQuizz() meuQuizz meuQuizz2
+        isEditingANewQuizz = true;
+        editingQuizzIsValidated = false;
+        showScreen('edit');
+        nextPage('info');
+    }
 }
 
-function editQuizz(quizzId) {
+// Navegar entre seções
 
-    editingQuizz = getQuizzFromId(quizzId);
-    if (editingQuizz) {
-        isEditingANewQuizz = false;
-        editingQuizzIsValidated = false;
-        nextPage('info');
-        showScreen('edit');
-    }
+function createNewQuizz() {
+    editQuizz();
 }
 
 function deleteQuizz(id) {
@@ -688,22 +697,38 @@ function sendQuizz() {
             myQuizzesData.push({
                 id: answer.data.id, key: answer.data.key
             });
-            console.log("quizz sent!")
+            console.log("quizz na nuvem!")
             pushToLocalStorage();
             pullFromLocalStorage();
             showEditPage('success');
         }).catch(error => {
-            console.log("nao conseguiu");
+            console.log("nao conseguiu publicar");
             console.log(error);
         })
-
     }
+    else if (!isEditingANewQuizz && editingQuizzIsValidated) {
+        console.log("tentando atualizar quizz no servidor...")
 
-    // se for um quizz já existente
-    // enviar para API com ID e com header com KEY
-    // then
-    // abrir página de sucesso
-    // fechar página de sucesso
+        const id = editingQuizz.id;
+        delete editingQuizz.id;
+
+        const key = getKeyFromId(id);
+        console.log(`id:${id}  key:${key}`);
+        const link = LINK_QUIZZES+"/"+id;
+        const config = {headers: {"Secret-Key": key}};
+
+        console.log("vamos tentar substituir em "+link);
+
+        axios.put(link, editingQuizz, config).then(answer => {
+            console.log("quizz atualizado na nuvem!")
+            pushToLocalStorage();
+            pullFromLocalStorage();
+            showEditPage('success');
+        }).catch(error => {
+            console.log("nao conseguiu substituir");
+            console.log(error);
+        })
+    }
 }
 
 function goHomeFromSuccessPage(){

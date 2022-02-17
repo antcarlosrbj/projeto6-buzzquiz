@@ -120,6 +120,7 @@ main {
 .titleYourQuizzes ion-icon {
     font-size: 30px;
     color: #EC362D;
+    cursor: pointer;
 }
 
 .yourQuizzes p {
@@ -146,6 +147,9 @@ main {
 .quizz {
     margin: 7px;
     position: relative;
+    overflow: hidden;
+    width: 340px;
+    height: 181px;
 }
 
 .gradient {

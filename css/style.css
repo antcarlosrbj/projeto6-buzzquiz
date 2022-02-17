@@ -188,7 +188,6 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-bottom: solid 1px grey;
 }
 
 .editPage > h2 {
@@ -319,10 +318,4 @@ main {
 
 .hidden {
     display: none;
-}
-
-/* Auxiliar - APAGAR */
-
-.home, .play, .edit {
-    border-bottom: 5px solid;
 }

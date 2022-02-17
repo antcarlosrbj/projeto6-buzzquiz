@@ -2,16 +2,20 @@
 
 const LINK_QUIZZES = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
 
-const quizzes = []; // pull from API
-const userQuizzes = []; // filter quizzes (userQuizzesIDs)
-const otherQuizzes = []; // filter quizzes (not userQuizzesIDs)
+let quizzes = []; // pull from API
+let userQuizzes = []; // filter quizzes (userQuizzesIDs)
+let otherQuizzes = []; // filter quizzes (not userQuizzesIDs)
 
 let playingQuizz = {}; // object to play quizz
+
 let editingQuizz = null; // object to edit quizz
-
-let isEditingANewQuizz = true;
-let editingQuizzIsValidated = false;
-
+let isEditingANewQuizz = true; // controls flow
+let editingQuizzIsValidated = false; // controls flow
+function resetEditingQuizz() {
+    editingQuizz = null;
+    isEditingANewQuizz = true;
+    editingQuizzIsValidated = false;
+}
 
 const homeScreen = document.querySelector(".home");
 const playScreen = document.querySelector(".play");
@@ -21,6 +25,9 @@ const editInfoPage = document.querySelector("#edit-info");
 const editQuestionsPage = document.querySelector("#edit-questions");
 const editLevelsPage = document.querySelector("#edit-levels");
 const editSuccesPage = document.querySelector("#edit-success");
+
+
+
 
 
 // --------- LOCAL STORAGE -------
@@ -46,14 +53,19 @@ function clearLocalStorage() {
 pullFromLocalStorage();
 
 
+// ------------------ FLUXO ------------------
+
+refreshQuizzes();
+
+
 // Apagar
 const meuQuizz = {
-    title: "Título do quizz quizz",
-    image: "https://http.cat/411.jpg",
+    title: "Meu primeiro quizz teste? Vamos lá?",
+    image: "https://imagens.brasil.elpais.com/resizer/A_AIZejFb4KXwd9h9fay-Ruft70=/414x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/WZF3MMB4ONHUTB5KBSMFZ7L2OI.JPG",
     questions: [
         {
-            title: "Título da pergunta 1",
-            color: "#123456",
+            title: "Qual o meu nome? Vamos lá!!!",
+            color: "#480372",
             answers: [
                 {
                     text: "Texto da resposta 1",
@@ -74,7 +86,7 @@ const meuQuizz = {
         },
         {
             title: "Título da pergunta 2",
-            color: "#123456",
+            color: "#049824",
             answers: [
                 {
                     text: "Texto da resposta 1",
@@ -95,7 +107,7 @@ const meuQuizz = {
         },
         {
             title: "Título da pergunta 3",
-            color: "#123456",
+            color: "#908432",
             answers: [
                 {
                     text: "Texto da resposta 1",
@@ -117,23 +129,114 @@ const meuQuizz = {
     ],
     levels: [
         {
-            title: "Título do nível 1",
+            title: "HORRÍVEL HORRÍVEL",
             image: "https://http.cat/411.jpg",
-            text: "Descrição do nível 1",
+            text: "Descrição do nível vamos lá tentar fazer bem mais",
             minValue: 0
         },
         {
-            title: "Título do nível 2",
+            title: "TOP DO TOP DO TOP",
             image: "https://http.cat/412.jpg",
-            text: "Descrição do nível 2",
+            text: "Descrição do nível vamos lá tentar fazer bem mais",
             minValue: 50
         }
     ]
 }
 
+// --------- NAVEGAÇÃO -------------
+
+function showAllSreensAndPages() {
+    homeScreen.classList.remove("hidden");
+    playScreen.classList.remove("hidden");
+    editScreen.classList.remove("hidden");
+
+    editInfoPage.classList.remove("hidden");
+    editQuestionsPage.classList.remove("hidden");
+    editLevelsPage.classList.remove("hidden");
+    editSuccesPage.classList.remove("hidden");
+
+}
+
+function showScreen(screen) {
+    if (screen === "home") {
+        homeScreen.classList.remove("hidden");
+        playScreen.classList.add("hidden");
+        editScreen.classList.add("hidden");
+    } else if (screen === "play") {
+        homeScreen.classList.add("hidden");
+        playScreen.classList.remove("hidden");
+        editScreen.classList.add("hidden");
+    } else if (screen === "edit") {
+        homeScreen.classList.add("hidden");
+        playScreen.classList.add("hidden");
+        editScreen.classList.remove("hidden");
+    }
+}
+
 
 
 // ---------- HOME SCREEN SECTION -----------
+
+
+// Get all quizzes
+function refreshQuizzes() {
+    axios.get(LINK_QUIZZES).then(ans => {
+        console.log("quizzes recebidos");
+        quizzes = ans.data;
+        classifyQuizzes();
+        loadHome();
+    }).catch(error => {
+        console.log("não foi possível receber os quizzes");
+        console.log(error);
+    })
+}
+
+
+function classifyQuizzes() {
+    pullFromLocalStorage();
+    userQuizzes = quizzes.filter(quizz => {
+        let check = false;
+        myQuizzesData.filter(data => {
+            if (data.id === quizz.id) {check = true;}
+        })
+        return check;
+    })
+    otherQuizzes = quizzes.filter(quizz => {
+        let check = false;
+        myQuizzesData.filter(data => {
+            if (data.id === quizz.id) {check = true;}
+        })
+        return !check;
+    })
+}
+
+function loadHome() {
+    if (userQuizzes.length === 0) {
+        console.log("nao tem nada seu");
+        homeScreen.querySelector(".yourQuizzesEmpty").classList.remove("hidden");
+        homeScreen.querySelector(".yourQuizzes").classList.add("hidden");
+    }
+    else {
+        console.log("opa tem coisa sua");
+        homeScreen.querySelector(".yourQuizzesEmpty").classList.add("hidden");
+        homeScreen.querySelector(".yourQuizzes").classList.remove("hidden");
+    }
+
+    showScreen();
+}
+
+
+
+function createQuizzThumbElement(quizz) {
+
+    const element = document.createElement("div");
+    element.classList.add("quizz");
+    element.innerHTML = `
+        <div class="gradient"></div>
+        <p>${quizz.title}</p>
+        <img src="${quizz.image}" alt="${quizz.title}">`
+    return element;
+}
 
 
 
@@ -167,28 +270,29 @@ function deleteLevelButtonClicked(index) {
 }
 
 // Navegar entre seções
+function createNewQuizz() {
 
-function editQuizz(quizzElement) {
+    editingQuizz = meuQuizz; // meuQuizz
+    isEditingANewQuizz = true;
+    editingQuizzIsValidated = false;
 
-    // AJUSTAR AQUI PRA SER MAIS QUE ISSO
-    if (quizzElement) {
-        editingQuizz = quizzElement;
-    }
-
+    showScreen('edit');
     nextPage('info');
 }
 
-function nextPage(nextPageKey) {
+function editExistingQuizz(div) {}
 
-    // se o editingQuizz estiver vazio, crie um novo quizz
-    if (!editingQuizz) {
-        editingQuizz = meuQuizz; //newQuizz();
-    }
+function nextPage(nextPageKey) {
 
     if (validatePageInputs(nextPageKey)) {
         saveInputs(nextPageKey);
         loadEditPage(nextPageKey);
-        showEditPage(nextPageKey);
+        if (nextPageKey === "success"){
+            sendQuizz();
+        }
+        else {
+            showEditPage(nextPageKey);
+        }
     }
 }
 
@@ -528,9 +632,9 @@ function loadEditPage(pageKey) {
             const wrapper = editInfoPage.querySelector(".editSection-group-wrapper");
             wrapper.innerHTML = "";
             wrapper.appendChild(newInputElement("info", "title", "input", "Título do seu quizz", editingQuizz.title));
-            wrapper.appendChild(newInputElement("info", "url", "input", "", editingQuizz.image));
-            wrapper.appendChild(newInputElement("info", "numQue", "input", "", editingQuizz.questions.length));
-            wrapper.appendChild(newInputElement("info", "numLev", "input", "", editingQuizz.levels.length));
+            wrapper.appendChild(newInputElement("info", "url", "input", "URL da imagem do seu quizz", editingQuizz.image));
+            wrapper.appendChild(newInputElement("info", "numQue", "input", "Quantidade de perguntas do quizz", editingQuizz.questions.length));
+            wrapper.appendChild(newInputElement("info", "numLev", "input", "Quantidade de níveis do quizz", editingQuizz.levels.length));
             break;
 
         case 'questions':
@@ -548,7 +652,11 @@ function loadEditPage(pageKey) {
             levelElements.forEach(levelElement => editPageContent.appendChild(levelElement));
             editPageContent.innerHTML += `<button class="add-button" onclick="addLevelButtonClicked()">Adicionar nível</button>`;
             break;
+
         case 'success':
+            editSuccesPage.querySelector(".editPage-content").innerHTML = "";
+            editSuccesPage.querySelector(".editPage-content").appendChild(createQuizzThumbElement(editingQuizz));
+
             break;
         default:
             break;
@@ -557,14 +665,23 @@ function loadEditPage(pageKey) {
 
 // Trocar de página
 
-function showEditPage(pageKey) { }
+function showEditPage(pageKey) {
+    editInfoPage.classList.add("hidden");
+    editQuestionsPage.classList.add("hidden");
+    editLevelsPage.classList.add("hidden");
+    editSuccesPage.classList.add("hidden");
+
+    document.querySelector("#edit-"+pageKey).classList.remove("hidden");
+}
 
 // enviando quizz
 
-
 function sendQuizz() {
 
-    if (isEditingANewQuizz) {
+    if (isEditingANewQuizz && editingQuizzIsValidated) {
+
+        console.log("tentar enviar o quizz");
+        console.log(editingQuizz);
 
         const postNewQuizz = axios.post(LINK_QUIZZES, editingQuizz);
         postNewQuizz.then(answer => {
@@ -572,9 +689,14 @@ function sendQuizz() {
             myQuizzesData.push({
                 id: answer.data.id, key: answer.data.key
             });
+            console.log("quizz sent!")
             pushToLocalStorage();
             pullFromLocalStorage();
-        });
+            showEditPage('success');
+        }).catch(error => {
+            console.log("nao conseguiu");
+            console.log(error);
+        })
 
     }
 
@@ -585,7 +707,11 @@ function sendQuizz() {
     // fechar página de sucesso
 }
 
-
+function goHomeFromSuccessPage(){
+    console.log("go home button pressed")
+    resetEditingQuizz();
+    showScreen("home");
+}
 
 
 
@@ -755,6 +881,3 @@ function newInputElement(fatherId, inp_name, tag, placeHolder, value) {
 
     return element;
 }
-
-
-nextPage("info");

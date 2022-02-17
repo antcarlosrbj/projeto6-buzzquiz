@@ -25,14 +25,14 @@
 
     <main>
         <div class="home">
-            <div class="yourQuizzesEmpty" onclick="nextPage('info')">
+            <div class="yourQuizzesEmpty" onclick="createNewQuizz()">
                 <p>Você não criou nenhum quizz ainda :(</p>
                 <button>Criar Quizz</button>
             </div>
             <div class="yourQuizzes hidden">
                 <div class="titleYourQuizzes">
                     <p>Seus Quizzes</p>
-                    <ion-icon name="add-circle"></ion-icon>
+                    <ion-icon name="add-circle" onclick="createNewQuizz()"></ion-icon>
                 </div>
                 <div class="quizzes">
                     <div class="quizz">
@@ -142,11 +142,15 @@
 
                 </div>
                 <button class="nextStep-button">Acessar Quizz</button>
-                <button class="goHome-button">Voltar para home</button>
+                <button class="goHome-button" onclick="goHomeFromSuccessPage()">Voltar para home</button>
             </div>
 
         </div>
     </main>
+
+
+    <!-- AXIOS -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <!-- Scripts -->
     <script src="./js/scripts.js"></script>
@@ -154,9 +158,6 @@
     <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-    <!-- AXIOS -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 
 </html>

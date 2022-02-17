@@ -211,18 +211,33 @@ function classifyQuizzes() {
 }
 
 function loadHome() {
+    
+    const yourQuizzesWrapperEl = homeScreen.querySelector(".yourQuizzes ");
+    const yourQuizzesEl = yourQuizzesWrapperEl.querySelector(".quizzes");
+    const allQuizzesEl = homeScreen.querySelector(".allQuizzes").querySelector(".quizzes");
+
+    yourQuizzesEl.innerHTML = "";
+    allQuizzesEl.innerHTML = "";
+
     if (userQuizzes.length === 0) {
         console.log("nao tem nada seu");
+        yourQuizzesWrapperEl.classList.add("hidden");
         homeScreen.querySelector(".yourQuizzesEmpty").classList.remove("hidden");
-        homeScreen.querySelector(".yourQuizzes").classList.add("hidden");
     }
     else {
         console.log("opa tem coisa sua");
+        userQuizzes.forEach(quizz => {
+            yourQuizzesEl.appendChild(createQuizzThumbElement(quizz));
+        })
+        yourQuizzesWrapperEl.classList.remove("hidden");
         homeScreen.querySelector(".yourQuizzesEmpty").classList.add("hidden");
-        homeScreen.querySelector(".yourQuizzes").classList.remove("hidden");
     }
 
-    showScreen();
+    otherQuizzes.forEach(quizz => {
+        allQuizzesEl.appendChild(createQuizzThumbElement(quizz));
+    })
+
+    showScreen("home");
 }
 
 
@@ -272,7 +287,7 @@ function deleteLevelButtonClicked(index) {
 // Navegar entre seções
 function createNewQuizz() {
 
-    editingQuizz = meuQuizz; // meuQuizz
+    editingQuizz = newQuizz(); // meuQuizz
     isEditingANewQuizz = true;
     editingQuizzIsValidated = false;
 
@@ -710,7 +725,7 @@ function sendQuizz() {
 function goHomeFromSuccessPage(){
     console.log("go home button pressed")
     resetEditingQuizz();
-    showScreen("home");
+    refreshQuizzes();
 }
 
 
@@ -728,12 +743,12 @@ function newQuizz(title, image, questions, levels) {
     }
     if (!levels) {
         levels = [
-            newLevel("", "", 0.5, ""),
-            newLevel("", "", 0.0, "")
+            newLevel("", "", 50, ""),
+            newLevel("", "", 0, "")
         ]
     }
 
-    return { id: null, title: "", image: "", questions: questions, levels: levels };
+    return {title: "", image: "", questions: questions, levels: levels };
 }
 
 function newQuestion(title, color, answers) {

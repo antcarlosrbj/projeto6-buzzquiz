@@ -79,9 +79,9 @@ main {
     justify-content: space-evenly;
     align-items: center;
 
-    cursor: pointer;
-
     transition: all 0.3s;
+
+    cursor: default;
 }
 .yourQuizzesEmpty:hover {
     background-color: #f3f3f3;
@@ -130,10 +130,22 @@ main {
     width: var(--dynamicWidth);
 }
 
+
+
 .titleYourQuizzes ion-icon {
     font-size: 30px;
     color: #EC362D;
     cursor: pointer;
+}
+
+.selectModel {
+    background-color: #eee;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #999;
+    max-width: 150px;
 }
 
 .yourQuizzes p {
@@ -163,6 +175,7 @@ main {
     overflow: hidden;
     width: 340px;
     height: 181px;
+    cursor: pointer;
 }
 
 .gradient {
@@ -228,6 +241,22 @@ main {
     font-weight: 400;
     margin: 0px;
 }
+.editQuizzButton {
+    border-radius: 10px 0 0 0;
+}
+.deleteQuizzButton {
+    border-radius: 0 0 0 10px;
+}
+.deleteQuizzButton p {
+    display: none;
+}
+.deleteQuizzButton.expanded p {
+    display: block;
+}
+.expanded {
+    border-radius: 10px 0 0 10px;
+}
+
 
 
 /* play */

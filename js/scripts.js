@@ -191,7 +191,152 @@ function createQuizzThumbElement(quizz, isUserQuizz) {
 
 // ---------- PLAY SCREEN SECTION -----------
 
+let quiz = "";
+let answers = "";
+let answersArray = "";
+let answersParent = "";
+let allAnswers = "";
 
+let result = [];
+let finalResult = "";
+let finalResultLevel = "";
+
+function showQuiz(idQuiz) {
+    const promise = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${idQuiz}`);
+    promise.then(loadQuiz);
+    showScreen("play");
+}
+
+function loadQuiz(answer) {
+    quiz = answer.data;
+
+    result = []; // Zerar a pontuação
+    
+    playScreen.innerHTML = `
+        <div class="headerPlay">
+            <p>${quiz.title}</p>
+            <img src="${quiz.image}" alt="Imagem do Quiz">
+            <div class="dark"></div>
+        </div>
+    `;
+
+    questionBox = "";
+
+    for (let k = 0; k < quiz.questions.length; k++){
+        answersArray = quiz.questions[k].answers;
+        answersArray.sort(comparator);
+
+        answers = "";
+
+        for (let i = 0; i < answersArray.length; i++){
+            answers += `
+                    <div class="answer ${answersArray[i].isCorrectAnswer}" onclick="selectAnswer(this)">
+                        <img src="${answersArray[i].image}" alt="">
+                        <p>${answersArray[i].text}</p>
+                        <div class="bright"></div>
+                    </div>
+            `;
+        }
+
+        playScreen.innerHTML += `
+            <div class="questionBox">
+                <div class="question">
+                    <p>${quiz.questions[k].title}</p>
+                </div>
+                <div class="answers">${answers}</div>
+            </div>
+        `;
+
+        window.scrollTo(0,0);
+    }
+}
+
+function comparator() { 
+	return Math.random() - 0.5; 
+}
+
+function selectAnswer(divAnswer) {
+    if (!(divAnswer.classList.contains("selected") || divAnswer.classList.contains("notSelected"))) { // Só irá executar a função se não estiver selecionado e não estiver como "não selecionado"
+
+        if (divAnswer.classList.contains("true")) { // Acertou ou errou?
+            result.push(1);
+        } else {
+            result.push(0);
+        }
+        
+        divAnswer.classList.add("selected"); // Seleciona a que foi clicada
+
+        answersParent = divAnswer.parentNode;
+        allAnswers = answersParent.querySelectorAll(".answer"); // Lista todas as respostas
+
+        for (let i = 0; i < allAnswers.length; i++) { // Coloca "notSelected" nas outras respostas
+            if (!(allAnswers[i].classList.contains("selected"))) {
+                allAnswers[i].classList.add("notSelected");
+            }
+        }
+
+        for (let i = 0; i < allAnswers.length; i++) { // Marca as respostas como certa ou errada
+            if (allAnswers[i].classList.contains("true")) {
+                allAnswers[i].classList.add("right");
+
+            } else if (allAnswers[i].classList.contains("false")) {
+                allAnswers[i].classList.add("wrong");
+            }
+        }
+
+        let questions = playScreen.querySelectorAll(".questionBox"); // Verifica se terminou
+        if(result.length == questions.length) {
+            finished();
+        }
+
+        setTimeout(() => {
+            let nextQuestion = answersParent.parentNode.nextElementSibling;
+            if (nextQuestion != null) {
+                nextQuestion.scrollIntoView();
+            } else {
+                playScreen.querySelector(".resultBox").scrollIntoView();
+            }
+        }, 2000);
+    }
+}
+
+function finished() {
+    let sum = 0;
+
+    for (let i = 0; i < result.length; i++) {   // Somando o resultado
+        sum += result[i];
+    }
+
+    finalResult = parseInt((sum / result.length) * 100); // Calculando o resultado final em %
+
+    for (let i = 0; i < quiz.levels.length; i++) {
+        if (finalResult >= quiz.levels[i].minValue) {
+            finalResultLevel = i;
+        }
+    }
+
+    printResultBox();
+}
+
+function printResultBox() {
+    playScreen.innerHTML += `
+        <div class="resultBox">
+            <div class="resultTitle">
+                <p>${finalResult}% de acerto: ${quiz.levels[finalResultLevel].title}</p>
+            </div>
+            <div class="result">
+                <img src="${quiz.levels[finalResultLevel].image}" alt="Imagem do resultado">
+                <p>${quiz.levels[finalResultLevel].text}</p>
+            </div>
+        </div>
+        <button class="restartQuiz" onclick="restartQuiz()">Reiniciar Quizz</button>
+        <button class="comeBackHome" onclick="refreshQuizzes()">Voltar pra home</button>
+    `;
+}
+
+function restartQuiz() {
+    showQuiz(quiz.id);
+}
 
 // ---------- EDIT SCREEN SECTION -----------
 

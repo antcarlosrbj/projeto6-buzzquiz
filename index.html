@@ -25,14 +25,14 @@
 
     <main>
         <div class="home">
-            <div class="yourQuizzesEmpty" onclick="editQuizz()">
+            <div class="yourQuizzesEmpty" onclick="createNewQuizz()">
                 <p>Você não criou nenhum quizz ainda :(</p>
                 <button>Criar Quizz</button>
             </div>
             <div class="yourQuizzes hidden">
                 <div class="titleYourQuizzes">
                     <p>Seus Quizzes</p>
-                    <ion-icon name="add-circle"></ion-icon>
+                    <ion-icon name="add-circle" onclick="createNewQuizz()"></ion-icon>
                 </div>
                 <div class="quizzes">
                     <div class="quizz">
@@ -168,123 +168,39 @@
             <!-- Edit Pages -->
 
             <div id="edit-info" class="editPage">
-
                 <h2>Comece pelo começo</h2>
-
                 <div class="editPage-content">
-
                     <div class="editSection">
-
                         <div class="editSection-group">
-
                             <div class="editSection-group-wrapper">
-                                <input type="text" placeholder="Título do seu quizz" class="title">
-                                <input type="text" placeholder="URL da imagem do seu quizz" class="url">
-                                <input type="text" placeholder="Quantidade de perguntas do quizz" class="numOfQuestions">
-                                <input type="text" placeholder="Quantidade de níveis do quizz" class="numOfLevels">
                             </div>
-
                         </div>
                     </div>
                 </div>
-
-                <button class="nextStep-button" onclick="nextPage(this)">Prosseguir pra criar perguntas</button>
-
+                <button class="nextStep-button" onclick="nextPage('questions')">Prosseguir pra criar perguntas</button>
             </div>
 
             <div id="edit-questions" class="editPage">
-
                 <h2>Crie suas perguntas</h2>
-
                 <div class="editPage-content">
-
-                    <div class="editSection closed">
-
-                        <div class="editSection-header">
-                            <h3>Pergunta 1</h3>
-                            <div>
-                                <ion-icon name="trash-outline" onclick="deleteEditSection(this)"></ion-icon>
-                                <ion-icon name="create-outline" onclick="toggleEditSection(this)"></ion-icon>
-                            </div>
-                        </div>
-
-                        <div class="editSection-group">
-                            <div class="editSection-group-wrapper">
-                                <input type="text" placeholder="Texto da pergunta">
-                                <input type="text" placeholder="Cor de fundo da pergunta">
-                            </div>
-                        </div>
-
-                        <div class="editSection-group">
-                            <h3>Respostas corretas</h3>
-                            <div class="editSection-group-wrapper">
-                                <input type="text" placeholder="Resposta correta">
-                                <input type="text" placeholder="URL da imagem">
-                            </div>
-                        </div>
-                        
-                        <div class="editSection-group">
-                            <h3>Respostas incorretas</h3>
-                            <div class="editSection-group-wrapper">
-                                <input type="text" placeholder="Resposta incorreta 1">
-                                <input type="text" placeholder="URL da imagem 1">
-                            </div>
-                            <div class="editSection-group-wrapper">
-                                <input type="text" placeholder="Resposta incorreta 2">
-                                <input type="text" placeholder="URL da imagem 2">
-                            </div>
-                            <div class="editSection-group-wrapper">
-                                <input type="text" placeholder="Resposta incorreta 2">
-                                <input type="text" placeholder="URL da imagem 2">
-                            </div>
-                        </div>
-
-                    </div>
-
+                    <!-- Perguntas aqui -->
                     <button class="add-button">Adicionar pergunta</button>
                 </div>
-
-                <button class="nextStep-button" onclick="nextPage(this)">Prosseguir pra criar níveis</button>
-
+                <button class="nextStep-button" onclick="nextPage('levels')">Prosseguir pra criar níveis</button>
             </div>
 
             <div id="edit-levels" class="editPage">
-
                 <h2>Agora, decida os níveis!</h2>
-
                 <div class="editPage-content">
-
-                    <div class="editSection closed">
-
-                        <div class="editSection-header">
-                            <h3>Nível 1</h3>
-                            <div>
-                                <ion-icon name="trash-outline" onclick="deleteEditSection(this)"></ion-icon>
-                                <ion-icon name="create-outline" onclick="toggleEditSection(this)"></ion-icon>
-                            </div>
-                        </div>
-
-                        <div class="editSection-group">
-                            <div class="editSection-group-wrapper">
-                                <input type="text" placeholder="Texto da pergunta">
-                                <input type="text" placeholder="% de acerto mínima">
-                                <input type="text" placeholder="URL da imagem do nível">
-                                <textarea type="text" placeholder="Descrição do nível"></textarea>
-                            </div>
-                        </div>
-                    </div>
-
+                    <!-- Níveis aqui -->
                     <button class="add-button">Adicionar nível</button>
                 </div>
-
-                <button class="nextStep-button" onclick="nextPage(this)">Finalizar Quizz</button>
-
+                <button class="nextStep-button" onclick="nextPage('success')">Finalizar Quizz</button>
             </div>
 
             <div id="edit-success" class="editPage">
                 <h2>Seu quizz está pronto!</h2>
                 <div class="editPage-content">
-
                     <div class="quizz">
                         <div class="gradient"></div>
                         <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
@@ -294,11 +210,15 @@
 
                 </div>
                 <button class="nextStep-button">Acessar Quizz</button>
-                <button class="goHome-button">Voltar para home</button>
+                <button class="goHome-button" onclick="goHomeFromSuccessPage()">Voltar para home</button>
             </div>
 
         </div>
     </main>
+
+
+    <!-- AXIOS -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <!-- Scripts -->
     <script src="./js/scripts.js"></script>

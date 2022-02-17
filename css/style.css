@@ -351,7 +351,6 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-bottom: solid 1px grey;
 }
 
 .editPage > h2 {
@@ -431,8 +430,21 @@ main {
     gap: 10px;
 }
 
-.editSection input,
-.editSection textarea {
+.editSection-group-wrapper > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.editSection-group-wrapper p {
+    width: 100%;
+    color: #EC362D;
+    margin-top: 3px;
+    font-size: 16px;
+    display: none;
+}
+
+.editSection-group-wrapper input,
+.editSection-group-wrapper textarea {
     font-size: 19px;
     padding: 14px 11px;
     border: 1px solid #D1D1D1;
@@ -444,6 +456,15 @@ main {
     font-style: italic;
     color: #BABABA;
 }
+
+.showError > p {
+    display: block;
+}
+.showError > input,
+.showError >  textarea {
+    background-color: #FFE9E9;
+}
+
 
 .editSection textarea {
     height: 177px;
@@ -460,10 +481,4 @@ main {
 
 .hidden {
     display: none;
-}
-
-/* Auxiliar - APAGAR */
-
-.home, .play, .edit {
-    border-bottom: 5px solid;
 }

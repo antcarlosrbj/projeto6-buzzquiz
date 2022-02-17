@@ -26,8 +26,7 @@ const editQuestionsPage = document.querySelector("#edit-questions");
 const editLevelsPage = document.querySelector("#edit-levels");
 const editSuccesPage = document.querySelector("#edit-success");
 
-
-
+let modelOptions = [];
 
 
 // --------- LOCAL STORAGE -------
@@ -51,6 +50,142 @@ function clearLocalStorage() {
 }
 
 pullFromLocalStorage();
+
+
+
+// --------- prebuilt models -------
+
+
+const meuQuizz = {
+    title: "Meu primeiro quizz teste? Vamos lá?",
+    image: "https://imagens.brasil.elpais.com/resizer/A_AIZejFb4KXwd9h9fay-Ruft70=/414x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/WZF3MMB4ONHUTB5KBSMFZ7L2OI.JPG",
+    questions: [
+        {
+            title: "Qual o meu nome? Vamos lá!!!",
+            color: "#480372",
+            answers: [
+                {
+                    text: "Texto da resposta 1",
+                    image: "https://http.cat/411.jpg",
+                    isCorrectAnswer: true
+                },
+                {
+                    text: "Texto da resposta 2",
+                    image: "https://http.cat/412.jpg",
+                    isCorrectAnswer: false
+                },
+                {
+                    text: "Texto da resposta 2",
+                    image: "https://http.cat/412.jpg",
+                    isCorrectAnswer: false
+                }
+            ]
+        },
+        {
+            title: "Título da pergunta 2",
+            color: "#049824",
+            answers: [
+                {
+                    text: "Texto da resposta 1",
+                    image: "https://http.cat/411.jpg",
+                    isCorrectAnswer: true
+                },
+                {
+                    text: "Texto da resposta 2",
+                    image: "https://http.cat/412.jpg",
+                    isCorrectAnswer: false
+                },
+                {
+                    text: "Texto da resposta 2",
+                    image: "https://http.cat/412.jpg",
+                    isCorrectAnswer: false
+                }
+            ]
+        },
+        {
+            title: "Título da pergunta 3",
+            color: "#908432",
+            answers: [
+                {
+                    text: "Texto da resposta 1",
+                    image: "https://http.cat/411.jpg",
+                    isCorrectAnswer: true
+                },
+                {
+                    text: "Texto da resposta 2",
+                    image: "https://http.cat/412.jpg",
+                    isCorrectAnswer: false
+                },
+                {
+                    text: "Texto da resposta 2",
+                    image: "https://http.cat/412.jpg",
+                    isCorrectAnswer: false
+                }
+            ]
+        }
+    ],
+    levels: [
+        {
+            title: "HORRÍVEL HORRÍVEL",
+            image: "https://http.cat/411.jpg",
+            text: "Descrição do nível vamos lá tentar fazer bem mais",
+            minValue: 0
+        },
+        {
+            title: "TOP DO TOP DO TOP",
+            image: "https://http.cat/412.jpg",
+            text: "Descrição do nível vamos lá tentar fazer bem mais",
+            minValue: 50
+        }
+    ]
+}
+
+
+const meuQuizz2 = {
+    title: 'O quão carioca você é? Teste seus conhecimentos de cria!',
+    image: 'https://static.mundoeducacao.uol.com.br/mundoeducacao/2021/03/1-cristo-redentor.jpg',
+    questions: [
+        {
+            title: 'Qualquer perguntinha marota pq o teste é real', color: '#000000',
+            answers:[
+                {text: 'Rexposta certa de cria', isCorrectAnswer: true, image: 'https://i.pinimg.com/736x/56/4e/62/564e62fef96c4ef0d67a59c94b1a6288.jpg'},
+                {text: 'Resposta errada de nerd', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg'},
+                {text: 'Marola nao po ta maluco', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg'},
+                {text: 'Nerd loka bro pego a visao?', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg'}
+        ]},
+        {
+            title: 'Segunda perguntinha pra marolar...', color: '#000000',
+            answers:[
+                {text: 'Rexposta certa de cria', isCorrectAnswer: true, image: 'https://i.pinimg.com/736x/56/4e/62/564e62fef96c4ef0d67a59c94b1a6288.jpg'},
+                {text: 'Resposta errada de nerd', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg'},
+                {text: 'Marola nao po ta maluco', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg'},
+        ]},
+        {
+            title: 'Essa terceira é braba tá?', color: '#000000',
+            answers:[
+                {text: 'Rexposta certa de cria', isCorrectAnswer: true, image: 'https://i.pinimg.com/736x/56/4e/62/564e62fef96c4ef0d67a59c94b1a6288.jpg'},
+                {text: 'Resposta errada de nerd', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg'},
+                {text: 'Marola nao po ta maluco', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg'},
+        ]}
+    ],
+    levels: [
+        {
+            title: "100% CRIA das casinha",
+            text: "ta maluco po. vc é 100% cria irmaozinho. local dos local. norkreina doidao. fechamento patudo pego a visaozinha?",
+            image: "https://i.ytimg.com/vi/lM3d9f2AGoY/maxresdefault.jpg",
+            minValue: "100",
+        },
+        {
+            title: "nerd loka mao furada",
+            text: "ooooo pode saindo já. vc eh uma negacao tlg?? so seria pior se fose paulista. vacilao mete o pe",
+            image: "https://img.ibxk.com.br/2020/05/13/13105244489120.jpg",
+            minValue: "0",
+        }
+    ]
+}
+
+const prebuiltModels = [meuQuizz, meuQuizz2];
+
 
 
 // ------------------ FLUXO ------------------
@@ -155,7 +290,38 @@ function loadHome() {
         allQuizzesEl.appendChild(createQuizzThumbElement(quizz, false));
     })
 
+    populateOptions();
+
     showScreen("home");
+}
+
+
+
+function populateOptions () {
+
+    optionEls = document.querySelectorAll(".selectModel");
+    optionEls.forEach(el => {
+        el.innerHTML = "";
+    })
+
+    modelOptions = [
+        {id:null, text:"Novo", quizz: newQuizz()}
+    ];
+
+    prebuiltModels.forEach(model => {
+        modelOptions.push( {id:null, text:model.title, quizz: model} )
+    })
+
+    userQuizzes.forEach(quizz => {
+        modelOptions.push( {id:quizz.id, text:quizz.title, quizz: quizz} )
+    })
+    
+    optionEls.forEach(el => {
+        modelOptions.forEach((model, i) => {
+            console.log(model.text);
+            el.appendChild( new Option(model.text, i) );
+        })
+    })
 }
 
 
@@ -235,12 +401,28 @@ function editQuizz(id) {
         }
     }
     else {
-        editingQuizz = meuQuizz2; // newQuizz() meuQuizz meuQuizz2
+        editingQuizz = modelOptions[getSelectedModelIndex()].quizz; // newQuizz() meuQuizz meuQuizz2
+
+        if (editingQuizz.id !== undefined) {delete editingQuizz.id;}
+        if (editingQuizz.key !== undefined) {delete editingQuizz.key;}
+
         isEditingANewQuizz = true;
         editingQuizzIsValidated = false;
         showScreen('edit');
         nextPage('info');
     }
+}
+
+function getSelectedModelIndex () {
+    const isFirstQuizz = !document.querySelector(".yourQuizzesEmpty").classList.contains("hidden");
+    let modelIndex = 0;
+    if (isFirstQuizz) {
+        modelIndex = document.querySelectorAll(".selectModel")[0].value;
+    } else {
+        modelIndex = document.querySelectorAll(".selectModel")[1].value;
+    }
+    return modelIndex;
+    //console.log(modelIndex);
 }
 
 // Navegar entre seções
@@ -732,7 +914,6 @@ function sendQuizz() {
 }
 
 function goHomeFromSuccessPage(){
-    console.log("go home button pressed")
     resetEditingQuizz();
     refreshQuizzes();
 }
@@ -907,133 +1088,3 @@ function newInputElement(fatherId, inp_name, tag, placeHolder, value) {
 }
 
 
-
-
-const meuQuizz2 = {
-    title: 'O quão carioca você é? Teste seus conhecimentos de cria!',
-    image: 'https://static.mundoeducacao.uol.com.br/mundoeducacao/2021/03/1-cristo-redentor.jpg',
-    questions: [
-        {
-            title: 'Qualquer perguntinha marota pq o teste é real', color: '#000000',
-            answers:[
-                {text: 'Rexposta certa de cria', isCorrectAnswer: true, image: 'https://i.pinimg.com/736x/56/4e/62/564e62fef96c4ef0d67a59c94b1a6288.jpg'},
-                {text: 'Resposta errada de nerd', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg'},
-                {text: 'Marola nao po ta maluco', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg'},
-                {text: 'Nerd loka bro pego a visao?', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg'}
-        ]},
-        {
-            title: 'Segunda perguntinha pra marolar...', color: '#000000',
-            answers:[
-                {text: 'Rexposta certa de cria', isCorrectAnswer: true, image: 'https://i.pinimg.com/736x/56/4e/62/564e62fef96c4ef0d67a59c94b1a6288.jpg'},
-                {text: 'Resposta errada de nerd', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg'},
-                {text: 'Marola nao po ta maluco', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg'},
-        ]},
-        {
-            title: 'Essa terceira é braba tá?', color: '#000000',
-            answers:[
-                {text: 'Rexposta certa de cria', isCorrectAnswer: true, image: 'https://i.pinimg.com/736x/56/4e/62/564e62fef96c4ef0d67a59c94b1a6288.jpg'},
-                {text: 'Resposta errada de nerd', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg'},
-                {text: 'Marola nao po ta maluco', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg'},
-        ]}
-    ],
-    levels: [
-        {
-            title: "100% CRIA das casinha",
-            text: "ta maluco po. vc é 100% cria irmaozinho. local dos local. norkreina doidao. fechamento patudo pego a visaozinha?",
-            image: "https://i.ytimg.com/vi/lM3d9f2AGoY/maxresdefault.jpg",
-            minValue: "100",
-        },
-        {
-            title: "nerd loka mao furada",
-            text: "ooooo pode saindo já. vc eh uma negacao tlg?? so seria pior se fose paulista. vacilao mete o pe",
-            image: "https://img.ibxk.com.br/2020/05/13/13105244489120.jpg",
-            minValue: "0",
-        }
-    ]
-}
-
-
-// Apagar
-const meuQuizz = {
-    title: "Meu primeiro quizz teste? Vamos lá?",
-    image: "https://imagens.brasil.elpais.com/resizer/A_AIZejFb4KXwd9h9fay-Ruft70=/414x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/WZF3MMB4ONHUTB5KBSMFZ7L2OI.JPG",
-    questions: [
-        {
-            title: "Qual o meu nome? Vamos lá!!!",
-            color: "#480372",
-            answers: [
-                {
-                    text: "Texto da resposta 1",
-                    image: "https://http.cat/411.jpg",
-                    isCorrectAnswer: true
-                },
-                {
-                    text: "Texto da resposta 2",
-                    image: "https://http.cat/412.jpg",
-                    isCorrectAnswer: false
-                },
-                {
-                    text: "Texto da resposta 2",
-                    image: "https://http.cat/412.jpg",
-                    isCorrectAnswer: false
-                }
-            ]
-        },
-        {
-            title: "Título da pergunta 2",
-            color: "#049824",
-            answers: [
-                {
-                    text: "Texto da resposta 1",
-                    image: "https://http.cat/411.jpg",
-                    isCorrectAnswer: true
-                },
-                {
-                    text: "Texto da resposta 2",
-                    image: "https://http.cat/412.jpg",
-                    isCorrectAnswer: false
-                },
-                {
-                    text: "Texto da resposta 2",
-                    image: "https://http.cat/412.jpg",
-                    isCorrectAnswer: false
-                }
-            ]
-        },
-        {
-            title: "Título da pergunta 3",
-            color: "#908432",
-            answers: [
-                {
-                    text: "Texto da resposta 1",
-                    image: "https://http.cat/411.jpg",
-                    isCorrectAnswer: true
-                },
-                {
-                    text: "Texto da resposta 2",
-                    image: "https://http.cat/412.jpg",
-                    isCorrectAnswer: false
-                },
-                {
-                    text: "Texto da resposta 2",
-                    image: "https://http.cat/412.jpg",
-                    isCorrectAnswer: false
-                }
-            ]
-        }
-    ],
-    levels: [
-        {
-            title: "HORRÍVEL HORRÍVEL",
-            image: "https://http.cat/411.jpg",
-            text: "Descrição do nível vamos lá tentar fazer bem mais",
-            minValue: 0
-        },
-        {
-            title: "TOP DO TOP DO TOP",
-            image: "https://http.cat/412.jpg",
-            text: "Descrição do nível vamos lá tentar fazer bem mais",
-            minValue: 50
-        }
-    ]
-}

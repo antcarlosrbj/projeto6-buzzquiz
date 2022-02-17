@@ -25,13 +25,15 @@
 
     <main>
         <div class="home">
-            <div class="yourQuizzesEmpty" onclick="createNewQuizz()">
+            <div class="yourQuizzesEmpty">
                 <p>Você não criou nenhum quizz ainda :(</p>
-                <button>Criar Quizz</button>
+                <button onclick="createNewQuizz()">Criar Quizz</button>
+                <select class="selectModel"></select>
             </div>
             <div class="yourQuizzes hidden">
                 <div class="titleYourQuizzes">
                     <p>Seus Quizzes</p>
+                    <select class="selectModel"></select>
                     <ion-icon name="add-circle" onclick="createNewQuizz()"></ion-icon>
                 </div>
                 <div class="quizzes">

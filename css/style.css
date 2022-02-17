@@ -194,24 +194,39 @@ main {
     top: 10px;
     right: 0px;
     z-index: 10;
-    border-radius: 10px 0 0 10px;
     overflow: hidden;
-}
-.yourQuizzOptions > div {
-    width: 43px;
-    height: 43px;
-    background-color: #EC362D;
-    color: white;
+
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    font-size: 22px;
+    align-items: flex-end;
+
+}
+.yourQuizzOptions > div {
+    padding: 10px;
     cursor: pointer;
     transition: 0.2s;
+    background-color: #EC362D;
+    width: fit-content;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 .yourQuizzOptions > div:hover {
-    background-color: #c42820;
+    background-color: #c92c24;
+}
+
+.yourQuizzOptions > div > * {
+    color: white;
+}
+
+.yourQuizzOptions > div > ion-icon {
+    font-size: 22px;
+}
+.yourQuizzOptions > div > p {
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0px;
 }
 
 

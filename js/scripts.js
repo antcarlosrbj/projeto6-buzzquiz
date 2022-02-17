@@ -174,6 +174,7 @@ function createQuizzThumbElement(quizz, isUserQuizz) {
             </div>
             <div onclick="deleteQuizz(${quizz.id})">
                 <ion-icon name="trash-outline"></ion-icon>
+                <p class="hidden">Confirmar</p>
             </div>
         </div>
         `
@@ -228,7 +229,26 @@ function createNewQuizz() {
     nextPage('info');
 }
 
-function editExistingQuizz(div) {}
+function editQuizz(quizzId) {
+
+    editingQuizz = userQuizzes.filter(quizz => quizz.id === quizzId)[0];
+    if (editingQuizz) {
+        isEditingANewQuizz = false;
+        editingQuizzIsValidated = false;
+        nextPage('info');
+        showScreen('edit');
+    }
+}
+
+function deleteQuizz(quizzId) {
+    const quizzEl = document.getElementById(quizzId);
+    const msgIsShown = !(quizzEl.querySelector("p").classList.contains("hidden"));
+    if (msgIsShown) {
+        console.log("escrever funçao pra deletar")
+    } else {
+        quizzEl.querySelector("p").classList.remove("hidden");
+    }
+}
 
 function nextPage(nextPageKey) {
 

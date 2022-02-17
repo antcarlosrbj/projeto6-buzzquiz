@@ -80,6 +80,14 @@ main {
     align-items: center;
 
     cursor: pointer;
+
+    transition: all 0.3s;
+}
+.yourQuizzesEmpty:hover {
+    background-color: #f3f3f3;
+}
+.yourQuizzesEmpty:active {
+    background-color: #e7e7e7;
 }
 
 .yourQuizzesEmpty > p {
@@ -100,6 +108,11 @@ main {
     color: #EC362D;
 
     cursor: pointer;
+    transition: all 0.3s;
+}
+.yourQuizzesEmpty:hover button {
+    height: 45px;
+    width: 160px;
 }
 
 /* yourQuizzes and allQuizzes */
@@ -175,6 +188,32 @@ main {
     object-fit: cover;
     border-radius: 5px;
 }
+
+.yourQuizzOptions {
+    position: absolute;
+    top: 10px;
+    right: 0px;
+    z-index: 10;
+    border-radius: 10px 0 0 10px;
+    overflow: hidden;
+}
+.yourQuizzOptions > div {
+    width: 43px;
+    height: 43px;
+    background-color: #EC362D;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.yourQuizzOptions > div:hover {
+    background-color: #c42820;
+}
+
 
 /* play */
 

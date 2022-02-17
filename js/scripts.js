@@ -55,7 +55,9 @@ pullFromLocalStorage();
 
 // ------------------ FLUXO ------------------
 
-refreshQuizzes();
+window.onload = function() {
+    refreshQuizzes();
+};
 
 
 
@@ -143,14 +145,14 @@ function loadHome() {
     else {
         console.log("opa tem coisa sua");
         userQuizzes.forEach(quizz => {
-            yourQuizzesEl.appendChild(createQuizzThumbElement(quizz));
+            yourQuizzesEl.appendChild(createQuizzThumbElement(quizz, true));
         })
         yourQuizzesWrapperEl.classList.remove("hidden");
         homeScreen.querySelector(".yourQuizzesEmpty").classList.add("hidden");
     }
 
     otherQuizzes.forEach(quizz => {
-        allQuizzesEl.appendChild(createQuizzThumbElement(quizz));
+        allQuizzesEl.appendChild(createQuizzThumbElement(quizz, false));
     })
 
     showScreen("home");
@@ -158,12 +160,26 @@ function loadHome() {
 
 
 
-function createQuizzThumbElement(quizz) {
+function createQuizzThumbElement(quizz, isUserQuizz) {
 
     const element = document.createElement("div");
     element.classList.add("quizz");
     element.id = quizz.id;
-    element.innerHTML = `
+
+    if (isUserQuizz) {
+        element.innerHTML = `
+        <div class="yourQuizzOptions">
+            <div onclick="editQuizz(${quizz.id})">
+                <ion-icon name="create-outline"></ion-icon>
+            </div>
+            <div onclick="deleteQuizz(${quizz.id})">
+                <ion-icon name="trash-outline"></ion-icon>
+            </div>
+        </div>
+        `
+    }
+
+    element.innerHTML += `
         <div class="gradient"></div>
         <p>${quizz.title}</p>
         <img src="${quizz.image}" alt="${quizz.title}">`
@@ -587,7 +603,7 @@ function loadEditPage(pageKey) {
 
         case 'success':
             editSuccesPage.querySelector(".editPage-content").innerHTML = "";
-            editSuccesPage.querySelector(".editPage-content").appendChild(createQuizzThumbElement(editingQuizz));
+            editSuccesPage.querySelector(".editPage-content").appendChild(createQuizzThumbElement(editingQuizz, true));
 
             break;
         default:

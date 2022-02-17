@@ -140,7 +140,6 @@ const meuQuizz = {
     ]
 }
 
-
 const meuQuizz2 = {
     title: 'O quão carioca você é? Teste seus conhecimentos de cria!',
     image: 'https://static.mundoeducacao.uol.com.br/mundoeducacao/2021/03/1-cristo-redentor.jpg',
@@ -272,6 +271,7 @@ function loadHome() {
     yourQuizzesEl.innerHTML = "";
     allQuizzesEl.innerHTML = "";
 
+    // cria home na parte do usuario (yourQuizzesEmpty, popular Quizzes do usuario)
     if (userQuizzes.length === 0) {
         console.log("nao tem nada seu");
         yourQuizzesWrapperEl.classList.add("hidden");
@@ -286,6 +286,7 @@ function loadHome() {
         homeScreen.querySelector(".yourQuizzesEmpty").classList.add("hidden");
     }
 
+    // popular Quizzes que não são do usuario
     otherQuizzes.forEach(quizz => {
         allQuizzesEl.appendChild(createQuizzThumbElement(quizz, false));
     })
@@ -331,6 +332,7 @@ function createQuizzThumbElement(quizz, isUserQuizz) {
     const element = document.createElement("div");
     element.classList.add("quizz");
     element.id = quizz.id;
+    element.onclick = `showQuiz(${quizz.id})`;
 
     if (isUserQuizz) {
         element.innerHTML = `
@@ -368,13 +370,14 @@ let finalResult = "";
 let finalResultLevel = "";
 
 function showQuiz(idQuiz) {
-    const promise = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${idQuiz}`);
-    promise.then(loadQuiz);
+    //const promise = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${idQuiz}`);
+    //promise.then(loadQuiz);
+    loadQuiz(idQuiz);
     showScreen("play");
 }
 
-function loadQuiz(answer) {
-    quiz = answer.data;
+function loadQuiz(id) { //answer
+    quiz = getQuizzFromId(id);
 
     result = []; // Zerar a pontuação
     

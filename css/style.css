@@ -163,6 +163,7 @@ main {
     overflow: hidden;
     width: 340px;
     height: 181px;
+    cursor: pointer;
 }
 
 .gradient {
@@ -228,6 +229,22 @@ main {
     font-weight: 400;
     margin: 0px;
 }
+.editQuizzButton {
+    border-radius: 10px 0 0 0;
+}
+.deleteQuizzButton {
+    border-radius: 0 0 0 10px;
+}
+.deleteQuizzButton p {
+    display: none;
+}
+.deleteQuizzButton.expanded p {
+    display: block;
+}
+.expanded {
+    border-radius: 10px 0 0 10px;
+}
+
 
 
 /* play */

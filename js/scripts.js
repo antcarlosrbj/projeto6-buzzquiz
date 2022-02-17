@@ -169,12 +169,12 @@ function createQuizzThumbElement(quizz, isUserQuizz) {
     if (isUserQuizz) {
         element.innerHTML = `
         <div class="yourQuizzOptions">
-            <div onclick="editQuizz(${quizz.id})">
+            <div class="editQuizzButton" onclick="editQuizz(${quizz.id})">
                 <ion-icon name="create-outline"></ion-icon>
             </div>
-            <div onclick="deleteQuizz(${quizz.id})">
+            <div class="deleteQuizzButton" onclick="deleteQuizz(${quizz.id})">
                 <ion-icon name="trash-outline"></ion-icon>
-                <p class="hidden">Confirmar</p>
+                <p>Confirmar</p>
             </div>
         </div>
         `
@@ -221,7 +221,7 @@ function deleteLevelButtonClicked(index) {
 // Navegar entre seções
 function createNewQuizz() {
 
-    editingQuizz = newQuizz(); // newQuizz() meuQuizz meuQuizz2
+    editingQuizz = meuQuizz2; // newQuizz() meuQuizz meuQuizz2
     isEditingANewQuizz = true;
     editingQuizzIsValidated = false;
 
@@ -231,7 +231,7 @@ function createNewQuizz() {
 
 function editQuizz(quizzId) {
 
-    editingQuizz = userQuizzes.filter(quizz => quizz.id === quizzId)[0];
+    editingQuizz = getQuizzFromId(quizzId);
     if (editingQuizz) {
         isEditingANewQuizz = false;
         editingQuizzIsValidated = false;
@@ -240,14 +240,45 @@ function editQuizz(quizzId) {
     }
 }
 
-function deleteQuizz(quizzId) {
-    const quizzEl = document.getElementById(quizzId);
-    const msgIsShown = !(quizzEl.querySelector("p").classList.contains("hidden"));
+function deleteQuizz(id) {
+    const quizzEl = document.getElementById(id);
+    const msgIsShown = (quizzEl.querySelector(".deleteQuizzButton").classList.contains("expanded"));
     if (msgIsShown) {
-        console.log("escrever funçao pra deletar")
+        const quizz = getQuizzFromId(id);
+        const key = getKeyFromId(id);
+        const link = LINK_QUIZZES+"/"+id;
+        const config = {headers: {"Secret-Key": key}};
+
+        console.log("vamos tentar apagar "+link);
+        axios.delete(link, config).then(ans => {
+            console.log("conseguiu apagar");
+            goHomeFromSuccessPage();
+        }).catch(error => {
+            console.log("não conseguiu apagar");
+            console.log(error)
+        })
     } else {
-        quizzEl.querySelector("p").classList.remove("hidden");
+        quizzEl.querySelector(".deleteQuizzButton").classList.add("expanded");
     }
+}
+
+function getQuizzFromId(id) {
+    let quizzObj = null;
+    quizzes.forEach(quizz => {
+        if(quizz.id === id){
+            quizzObj = quizz;
+        }
+    })
+    return quizzObj;
+}
+
+function getKeyFromId(id){
+    let key = null;
+    myQuizzesData.forEach(quizz => {
+        if (quizz.id === id) {key = quizz.key;}
+    })
+    //console.log(`id: ${id} key:${key}`);
+    return key;
 }
 
 function nextPage(nextPageKey) {

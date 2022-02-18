@@ -419,7 +419,7 @@ function loadQuiz(id) { //answer
         playScreen.lastElementChild.firstElementChild.style.backgroundColor = quiz.questions[k].color; // Definindo a cor de fundo da pergunta
     }
 
-    window.scrollTo(0,0);
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
 }
 
 function comparator() { 
@@ -506,7 +506,8 @@ function printResultBox() {
 }
 
 function restartQuiz() {
-    showQuiz(quiz.id);
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    setTimeout(() => showQuiz(quiz.id), 500);
 }
 
 // ---------- EDIT SCREEN SECTION -----------

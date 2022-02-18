@@ -416,8 +416,10 @@ function loadQuiz(id) { //answer
             </div>
         `;
 
-        window.scrollTo(0,0);
+        playScreen.lastElementChild.firstElementChild.style.backgroundColor = quiz.questions[k].color; // Definindo a cor de fundo da pergunta
     }
+
+    window.scrollTo(0,0);
 }
 
 function comparator() { 

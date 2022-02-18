@@ -1,6 +1,6 @@
 // ---------- GLOBAL VARIABLES -----------
 
-const LINK_QUIZZES = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
+const LINK_QUIZZES = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes"; // 3637
 
 let quizzes = []; // pull from API
 let userQuizzes = []; // filter quizzes (userQuizzesIDs)
@@ -1062,7 +1062,7 @@ function sendQuizz() {
 
             if (editingQuizz.id) { delete editingQuizz.id }
             if (editingQuizz.key) { delete editingQuizz.key }
-            
+
             console.log("enviando assim:");
             console.log(editingQuizz);
 

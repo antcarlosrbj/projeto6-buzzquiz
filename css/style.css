@@ -31,7 +31,7 @@ header {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 2;
+    z-index: 20;
     
     height: 69px;
     display: flex;
@@ -169,6 +169,8 @@ main {
     flex-wrap: wrap;
 }
 
+
+
 .quizz {
     margin: 7px;
     position: relative;
@@ -186,7 +188,7 @@ main {
     border-radius: 5px;
 }
 
-.quizz > p {
+.quizz > a > p {
     position: absolute;
     bottom: 0;
     width: 300px;
@@ -195,12 +197,14 @@ main {
     color: white;
 }
 
-.quizz img, .quizz img {
+.quizz img {
     width: 340px;
     height: 181px;
     object-fit: cover;
     border-radius: 5px;
 }
+
+
 
 .yourQuizzOptions {
     position: absolute;

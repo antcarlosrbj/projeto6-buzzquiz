@@ -12,6 +12,7 @@ let editingQuizz = null; // object to edit quizz
 let isEditingANewQuizz = true; // controls flow
 let editingQuizzIsValidated = false; // controls flow
 function resetEditingQuizz() {
+    console.log("resentando ... ok!")
     editingQuizz = null;
     isEditingANewQuizz = true;
     editingQuizzIsValidated = false;
@@ -24,7 +25,7 @@ const editScreen = document.querySelector(".edit");
 const editInfoPage = document.querySelector("#edit-info");
 const editQuestionsPage = document.querySelector("#edit-questions");
 const editLevelsPage = document.querySelector("#edit-levels");
-const editSuccesPage = document.querySelector("#edit-success");
+const editSuccessPage = document.querySelector("#edit-success");
 
 let modelOptions = [];
 
@@ -37,8 +38,8 @@ let myQuizzesData = [];
 
 function pullFromLocalStorage() {
     const obj = JSON.parse(window.localStorage.getItem("myQuizzesData"));
-    if (obj) {myQuizzesData = obj;}
-    else {myQuizzesData = []}
+    if (obj) { myQuizzesData = obj; }
+    else { myQuizzesData = [] }
 }
 function pushToLocalStorage() {
     window.localStorage.setItem("myQuizzesData", JSON.stringify(myQuizzesData));
@@ -146,26 +147,29 @@ const meuQuizz2 = {
     questions: [
         {
             title: 'Qualquer perguntinha marota pq o teste é real', color: '#000000',
-            answers:[
-                {text: 'Rexposta certa de cria', isCorrectAnswer: true, image: 'https://i.pinimg.com/736x/56/4e/62/564e62fef96c4ef0d67a59c94b1a6288.jpg'},
-                {text: 'Resposta errada de nerd', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg'},
-                {text: 'Marola nao po ta maluco', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg'},
-                {text: 'Nerd loka bro pego a visao?', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg'}
-        ]},
+            answers: [
+                { text: 'Rexposta certa de cria', isCorrectAnswer: true, image: 'https://i.pinimg.com/736x/56/4e/62/564e62fef96c4ef0d67a59c94b1a6288.jpg' },
+                { text: 'Resposta errada de nerd', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg' },
+                { text: 'Marola nao po ta maluco', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg' },
+                { text: 'Nerd loka bro pego a visao?', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg' }
+            ]
+        },
         {
             title: 'Segunda perguntinha pra marolar...', color: '#000000',
-            answers:[
-                {text: 'Rexposta certa de cria', isCorrectAnswer: true, image: 'https://i.pinimg.com/736x/56/4e/62/564e62fef96c4ef0d67a59c94b1a6288.jpg'},
-                {text: 'Resposta errada de nerd', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg'},
-                {text: 'Marola nao po ta maluco', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg'},
-        ]},
+            answers: [
+                { text: 'Rexposta certa de cria', isCorrectAnswer: true, image: 'https://i.pinimg.com/736x/56/4e/62/564e62fef96c4ef0d67a59c94b1a6288.jpg' },
+                { text: 'Resposta errada de nerd', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg' },
+                { text: 'Marola nao po ta maluco', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg' },
+            ]
+        },
         {
             title: 'Essa terceira é braba tá?', color: '#000000',
-            answers:[
-                {text: 'Rexposta certa de cria', isCorrectAnswer: true, image: 'https://i.pinimg.com/736x/56/4e/62/564e62fef96c4ef0d67a59c94b1a6288.jpg'},
-                {text: 'Resposta errada de nerd', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg'},
-                {text: 'Marola nao po ta maluco', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg'},
-        ]}
+            answers: [
+                { text: 'Rexposta certa de cria', isCorrectAnswer: true, image: 'https://i.pinimg.com/736x/56/4e/62/564e62fef96c4ef0d67a59c94b1a6288.jpg' },
+                { text: 'Resposta errada de nerd', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg' },
+                { text: 'Marola nao po ta maluco', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg' },
+            ]
+        }
     ],
     levels: [
         {
@@ -189,7 +193,7 @@ const prebuiltModels = [meuQuizz, meuQuizz2];
 
 // ------------------ FLUXO ------------------
 
-window.onload = function() {
+window.onload = function () {
     refreshQuizzes();
 };
 
@@ -205,7 +209,7 @@ function showAllSreensAndPages() {
     editInfoPage.classList.remove("hidden");
     editQuestionsPage.classList.remove("hidden");
     editLevelsPage.classList.remove("hidden");
-    editSuccesPage.classList.remove("hidden");
+    editSuccessPage.classList.remove("hidden");
 
 }
 
@@ -223,6 +227,7 @@ function showScreen(screen) {
         playScreen.classList.add("hidden");
         editScreen.classList.remove("hidden");
     }
+    window.scrollTo(0, 0);
 }
 
 
@@ -233,13 +238,13 @@ function showScreen(screen) {
 // Get all quizzes
 function refreshQuizzes() {
     axios.get(LINK_QUIZZES).then(ans => {
-        console.log("quizzes recebidos");
+        // console.log("quizzes recebidos");
         quizzes = ans.data;
         classifyQuizzes();
         loadHome();
     }).catch(error => {
-        console.log("não foi possível receber os quizzes");
-        console.log(error);
+        // console.log("não foi possível receber os quizzes");
+        // console.log(error);
     })
 }
 
@@ -249,21 +254,21 @@ function classifyQuizzes() {
     userQuizzes = quizzes.filter(quizz => {
         let check = false;
         myQuizzesData.filter(data => {
-            if (data.id === quizz.id) {check = true;}
+            if (data.id === quizz.id) { check = true; }
         })
         return check;
     })
     otherQuizzes = quizzes.filter(quizz => {
         let check = false;
         myQuizzesData.filter(data => {
-            if (data.id === quizz.id) {check = true;}
+            if (data.id === quizz.id) { check = true; }
         })
         return !check;
     })
 }
 
 function loadHome() {
-    
+
     const yourQuizzesWrapperEl = homeScreen.querySelector(".yourQuizzes ");
     const yourQuizzesEl = yourQuizzesWrapperEl.querySelector(".quizzes");
     const allQuizzesEl = homeScreen.querySelector(".allQuizzes").querySelector(".quizzes");
@@ -273,14 +278,14 @@ function loadHome() {
 
     // cria home na parte do usuario (yourQuizzesEmpty, popular Quizzes do usuario)
     if (userQuizzes.length === 0) {
-        console.log("nao tem nada seu");
+        // console.log("nao tem nada seu");
         yourQuizzesWrapperEl.classList.add("hidden");
         homeScreen.querySelector(".yourQuizzesEmpty").classList.remove("hidden");
     }
     else {
-        console.log("opa tem coisa sua");
+        // console.log("opa tem coisa sua");
         userQuizzes.forEach(quizz => {
-            yourQuizzesEl.appendChild(createQuizzThumbElement(quizz, true));
+            yourQuizzesEl.appendChild(createQuizzThumbElement(quizz, true, "h"));
         })
         yourQuizzesWrapperEl.classList.remove("hidden");
         homeScreen.querySelector(".yourQuizzesEmpty").classList.add("hidden");
@@ -288,7 +293,7 @@ function loadHome() {
 
     // popular Quizzes que não são do usuario
     otherQuizzes.forEach(quizz => {
-        allQuizzesEl.appendChild(createQuizzThumbElement(quizz, false));
+        allQuizzesEl.appendChild(createQuizzThumbElement(quizz, false, "h"));
     })
 
     populateOptions();
@@ -298,7 +303,7 @@ function loadHome() {
 
 
 
-function populateOptions () {
+function populateOptions() {
 
     optionEls = document.querySelectorAll(".selectModel");
     optionEls.forEach(el => {
@@ -306,33 +311,33 @@ function populateOptions () {
     })
 
     modelOptions = [
-        {id:null, text:"Novo", quizz: newQuizz()}
+        { id: null, text: "Novo", quizz: newQuizz() }
     ];
 
     prebuiltModels.forEach(model => {
-        modelOptions.push( {id:null, text:model.title, quizz: model} )
+        modelOptions.push({ id: null, text: model.title, quizz: model })
     })
 
     userQuizzes.forEach(quizz => {
-        modelOptions.push( {id:quizz.id, text:quizz.title, quizz: quizz} )
+        modelOptions.push({ id: quizz.id, text: quizz.title, quizz: quizz })
     })
-    
+
     optionEls.forEach(el => {
         modelOptions.forEach((model, i) => {
-            console.log(model.text);
-            el.appendChild( new Option(model.text, i) );
+            // console.log(model.text);
+            el.appendChild(new Option(model.text, i));
         })
     })
 }
 
 
 
-function createQuizzThumbElement(quizz, isUserQuizz) {
+function createQuizzThumbElement(quizz, isUserQuizz, prefix) {
 
     const element = document.createElement("div");
     element.classList.add("quizz");
-    element.id = quizz.id;
-    element.onclick = `showQuiz(${quizz.id})`;
+    element.id = prefix + quizz.id;
+    //element.addEventListener("click", quizzThumbClicked);
 
     if (isUserQuizz) {
         element.innerHTML = `
@@ -340,7 +345,7 @@ function createQuizzThumbElement(quizz, isUserQuizz) {
             <div class="editQuizzButton" onclick="editQuizz(${quizz.id})">
                 <ion-icon name="create-outline"></ion-icon>
             </div>
-            <div class="deleteQuizzButton" onclick="deleteQuizz(${quizz.id})">
+            <div class="deleteQuizzButton" onclick="deleteQuizz(${quizz.id}, this)">
                 <ion-icon name="trash-outline"></ion-icon>
                 <p>Confirmar</p>
             </div>
@@ -349,9 +354,13 @@ function createQuizzThumbElement(quizz, isUserQuizz) {
     }
 
     element.innerHTML += `
+        <a onclick="showQuiz(${quizz.id})">
         <div class="gradient"></div>
         <p>${quizz.title}</p>
-        <img src="${quizz.image}" alt="${quizz.title}">`
+        <img src="${quizz.image}" alt="${quizz.title}">
+        </a>
+    `
+
     return element;
 }
 
@@ -377,10 +386,11 @@ function showQuiz(idQuiz) {
 }
 
 function loadQuiz(id) { //answer
+
     quiz = getQuizzFromId(id);
 
     result = []; // Zerar a pontuação
-    
+
     playScreen.innerHTML = `
         <div class="headerPlay">
             <p>${quiz.title}</p>
@@ -391,13 +401,13 @@ function loadQuiz(id) { //answer
 
     questionBox = "";
 
-    for (let k = 0; k < quiz.questions.length; k++){
+    for (let k = 0; k < quiz.questions.length; k++) {
         answersArray = quiz.questions[k].answers;
         answersArray.sort(comparator);
 
         answers = "";
 
-        for (let i = 0; i < answersArray.length; i++){
+        for (let i = 0; i < answersArray.length; i++) {
             answers += `
                     <div class="answer ${answersArray[i].isCorrectAnswer}" onclick="selectAnswer(this)">
                         <img src="${answersArray[i].image}" alt="">
@@ -416,12 +426,12 @@ function loadQuiz(id) { //answer
             </div>
         `;
 
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     }
 }
 
-function comparator() { 
-	return Math.random() - 0.5; 
+function comparator() {
+    return Math.random() - 0.5;
 }
 
 function selectAnswer(divAnswer) {
@@ -432,7 +442,7 @@ function selectAnswer(divAnswer) {
         } else {
             result.push(0);
         }
-        
+
         divAnswer.classList.add("selected"); // Seleciona a que foi clicada
 
         answersParent = divAnswer.parentNode;
@@ -454,7 +464,7 @@ function selectAnswer(divAnswer) {
         }
 
         let questions = playScreen.querySelectorAll(".questionBox"); // Verifica se terminou
-        if(result.length == questions.length) {
+        if (result.length == questions.length) {
             finished();
         }
 
@@ -526,42 +536,59 @@ function addLevelButtonClicked() {
     loadEditPage('levels');
 }
 function deleteQuestionButtonClicked(index) {
-    if (removeQuestion(index)) {loadEditPage('questions');}
+    if (removeQuestion(index)) { loadEditPage('questions'); }
 }
 function deleteLevelButtonClicked(index) {
-    if (removeLevel(index)) {loadEditPage('levels');}
+    if (removeLevel(index)) { loadEditPage('levels'); }
 }
 
 
 
 function editQuizz(id) {
 
-    if (id){
+    console.log(`Tentando editar id:${id}`);
+
+    if (id) {
         editingQuizz = getQuizzFromId(id);
-        if (editingQuizz.id === id) {
+        if (editingQuizz.id === id && editingQuizz) {
+
+            console.log("quizz existente");
+            console.log(editingQuizz)
+
             isEditingANewQuizz = false;
             editingQuizzIsValidated = false;
+
             nextPage('info');
             showScreen('edit');
         }
         else {
-            console.log("não achou quizz com esse id. nao da pra editar.");
+            console.log("não achou quizz com esse id.");
         }
     }
     else {
-        editingQuizz = modelOptions[getSelectedModelIndex()].quizz; // newQuizz() meuQuizz meuQuizz2
+        const model = modelOptions[getSelectedModelIndex()].quizz; // newQuizz() meuQuizz meuQuizz2
 
-        if (editingQuizz.id !== undefined) {delete editingQuizz.id;}
-        if (editingQuizz.key !== undefined) {delete editingQuizz.key;}
+        console.log("criando quizz do modelo a seguir...");
+        console.log(model);
+
+        editingQuizz = {}
+        editingQuizz.title = model.title;
+        editingQuizz.image = model.image;
+        editingQuizz.questions = model.questions;
+        editingQuizz.levels = model.levels;
+
+        console.log("o editingQuizz está assim: ");
+        console.log(editingQuizz);
 
         isEditingANewQuizz = true;
         editingQuizzIsValidated = false;
+
         showScreen('edit');
         nextPage('info');
     }
 }
 
-function getSelectedModelIndex () {
+function getSelectedModelIndex() {
     const isFirstQuizz = !document.querySelector(".yourQuizzesEmpty").classList.contains("hidden");
     let modelIndex = 0;
     if (isFirstQuizz) {
@@ -579,42 +606,45 @@ function createNewQuizz() {
     editQuizz();
 }
 
-function deleteQuizz(id) {
-    const quizzEl = document.getElementById(id);
-    const msgIsShown = (quizzEl.querySelector(".deleteQuizzButton").classList.contains("expanded"));
+function deleteQuizz(id, element) {
+
+    //console.log(`deleter ${element.classList}`)
+    const msgIsShown = (element.classList.contains("expanded"));
+    // console.log("apertou");
+
     if (msgIsShown) {
         const quizz = getQuizzFromId(id);
         const key = getKeyFromId(id);
-        const link = LINK_QUIZZES+"/"+id;
-        const config = {headers: {"Secret-Key": key}};
+        const link = LINK_QUIZZES + "/" + id;
+        const config = { headers: { "Secret-Key": key } };
 
-        console.log("vamos tentar apagar "+link);
+        // console.log("vamos tentar apagar "+link);
         axios.delete(link, config).then(ans => {
-            console.log("conseguiu apagar");
+            // console.log("conseguiu apagar");
             goHomeFromSuccessPage();
         }).catch(error => {
-            console.log("não conseguiu apagar");
-            console.log(error)
+            // console.log("não conseguiu apagar");
+            // console.log(error)
         })
     } else {
-        quizzEl.querySelector(".deleteQuizzButton").classList.add("expanded");
+        element.classList.add("expanded");
     }
 }
 
 function getQuizzFromId(id) {
     let quizzObj = null;
     quizzes.forEach(quizz => {
-        if(quizz.id === id){
+        if (quizz.id == id) {
             quizzObj = quizz;
         }
     })
     return quizzObj;
 }
 
-function getKeyFromId(id){
+function getKeyFromId(id) {
     let key = null;
     myQuizzesData.forEach(quizz => {
-        if (quizz.id === id) {key = quizz.key;}
+        if (quizz.id === id) { key = quizz.key; }
     })
     //console.log(`id: ${id} key:${key}`);
     return key;
@@ -624,11 +654,11 @@ function nextPage(nextPageKey) {
 
     if (validatePageInputs(nextPageKey)) {
         saveInputs(nextPageKey);
-        loadEditPage(nextPageKey);
-        if (nextPageKey === "success"){
+        if (nextPageKey === "success") {
             sendQuizz();
         }
         else {
+            loadEditPage(nextPageKey);
             showEditPage(nextPageKey);
         }
     }
@@ -690,19 +720,19 @@ function validateInputs(pageKey, type, elementId) {
     let value = null;
 
     if (type === "mandatory_numOfAns") {
-        
+
         // Right
         let text = getInputValue(elementId + "a" + 0 + "text");
         let url = getInputValue(elementId + "a" + 0 + "url");
 
         // se estiver preenchidos
-        if(text && url) {
+        if (text && url) {
             // checar se está preenchido corretamente
             validateInputs("answers", "title", elementId + "a" + 0 + "text");
             validateInputs("answers", "url", elementId + "a" + 0 + "url");
 
         } else {
-            numOfInvalidTests ++;
+            numOfInvalidTests++;
 
             element = document.getElementById(elementId + "a" + 0 + "text");
             element.children[1].innerHTML += "Defina a resposta correta. "
@@ -722,13 +752,13 @@ function validateInputs(pageKey, type, elementId) {
                 numOfWrongAnswers++;
             }
         }
-        if (numOfWrongAnswers < 2) {numOfInvalidTests++;}
+        if (numOfWrongAnswers < 2) { numOfInvalidTests++; }
 
         for (let i = 1; i < 4; i++) {
             element = document.getElementById(elementId + "a" + i + "text");
             text = getInputValue(elementId + "a" + i + "text");
             url = getInputValue(elementId + "a" + i + "url");
-            if(text && url) {
+            if (text && url) {
                 // checar se está preenchido corretamente
                 validateInputs("answers", "title", elementId + "a" + i + "text");
                 validateInputs("answers", "url", elementId + "a" + i + "url");
@@ -754,11 +784,11 @@ function validateInputs(pageKey, type, elementId) {
 
         let hasZeroValue = false;
         for (let i = 0; i < editingQuizz.levels.length; i++) {
-            if (getInputValue("l"+i+"minValue") === "0") {
+            if (getInputValue("l" + i + "minValue") === "0") {
                 hasZeroValue = true;
             }
         }
-        if(!hasZeroValue) {
+        if (!hasZeroValue) {
             numOfInvalidTests++;
         }
         for (let i = 0; i < editingQuizz.levels.length; i++) {
@@ -809,11 +839,11 @@ function validateInputs(pageKey, type, elementId) {
         }
         else if (type === "title") {
 
-            if (pageKey === "info" && (value.length < 20 || value.length > 65) ) {
+            if (pageKey === "info" && (value.length < 20 || value.length > 65)) {
                 numOfInvalidTests++;
                 errorMsg += "Deve ter entre 20 e 65 caracteres. ";
             }
-            if (pageKey === "question" && (value.length < 20) ) {
+            if (pageKey === "question" && (value.length < 20)) {
                 numOfInvalidTests++;
                 errorMsg += "Deve ter no mínimo 20 caracteres. ";
             }
@@ -835,7 +865,7 @@ function validateInputs(pageKey, type, elementId) {
     return numOfInvalidTests;
 }
 
-function clearInvalidTests () {
+function clearInvalidTests() {
     const inputs = document.querySelectorAll(".edit input, .edit textarea");
     inputs.forEach(child => {
         let father = child.parentElement;
@@ -992,8 +1022,12 @@ function loadEditPage(pageKey) {
             break;
 
         case 'success':
-            editSuccesPage.querySelector(".editPage-content").innerHTML = "";
-            editSuccesPage.querySelector(".editPage-content").appendChild(createQuizzThumbElement(editingQuizz, true));
+            editSuccessPage.querySelector(".editPage-content").innerHTML = "";
+            const buttons = editSuccessPage.querySelectorAll("button");
+            buttons.forEach(button => button.remove());
+            editSuccessPage.querySelector(".editPage-content").appendChild(createQuizzThumbElement(editingQuizz, true, "s"));
+            editSuccessPage.innerHTML += `<button class="nextStep-button" onclick="showQuiz(${editingQuizz.id})">Acessar Quizz</button>`;
+            editSuccessPage.innerHTML += `<button class="goHome-button" onclick="goHomeFromSuccessPage()">Voltar para home</button>`;
 
             break;
         default:
@@ -1007,61 +1041,106 @@ function showEditPage(pageKey) {
     editInfoPage.classList.add("hidden");
     editQuestionsPage.classList.add("hidden");
     editLevelsPage.classList.add("hidden");
-    editSuccesPage.classList.add("hidden");
+    editSuccessPage.classList.add("hidden");
 
-    document.querySelector("#edit-"+pageKey).classList.remove("hidden");
+    document.querySelector("#edit-" + pageKey).classList.remove("hidden");
 }
 
 // enviando quizz
 
 function sendQuizz() {
 
-    if (isEditingANewQuizz && editingQuizzIsValidated) {
+    console.log("tentando finalizar");
 
-        console.log("tentar enviar o quizz");
-        console.log(editingQuizz);
+    if (editingQuizzIsValidated) {
 
-        const postNewQuizz = axios.post(LINK_QUIZZES, editingQuizz);
-        postNewQuizz.then(answer => {
-            pullFromLocalStorage();
-            myQuizzesData.push({
-                id: answer.data.id, key: answer.data.key
-            });
-            console.log("quizz na nuvem!")
-            pushToLocalStorage();
-            pullFromLocalStorage();
-            showEditPage('success');
-        }).catch(error => {
-            console.log("nao conseguiu publicar");
-            console.log(error);
-        })
-    }
-    else if (!isEditingANewQuizz && editingQuizzIsValidated) {
-        console.log("tentando atualizar quizz no servidor...")
+        console.log("tudo validado");
 
-        const id = editingQuizz.id;
-        delete editingQuizz.id;
+        if (isEditingANewQuizz) {
 
-        const key = getKeyFromId(id);
-        console.log(`id:${id}  key:${key}`);
-        const link = LINK_QUIZZES+"/"+id;
-        const config = {headers: {"Secret-Key": key}};
+            console.log("é um novo. tentando salvar pela 1 vez.'");
 
-        console.log("vamos tentar substituir em "+link);
+            if (editingQuizz.id) { delete editingQuizz.id }
+            if (editingQuizz.key) { delete editingQuizz.key }
+            
+            console.log("enviando assim:");
+            console.log(editingQuizz);
 
-        axios.put(link, editingQuizz, config).then(answer => {
-            console.log("quizz atualizado na nuvem!")
-            pushToLocalStorage();
-            pullFromLocalStorage();
-            showEditPage('success');
-        }).catch(error => {
-            console.log("nao conseguiu substituir");
-            console.log(error);
-        })
+            const postNewQuizz = axios.post(LINK_QUIZZES, editingQuizz);
+            postNewQuizz.then(answer => {
+
+                console.log("show! conseguiu publicar! resposta:");
+                console.log(answer.data);
+
+                pullFromLocalStorage();
+                myQuizzesData.push({ id: answer.data.id, key: answer.data.key });
+                pushToLocalStorage();
+                pullFromLocalStorage();
+
+                editingQuizz.id = answer.data.id;
+                editingQuizz.title = answer.data.title;
+                editingQuizz.image = answer.data.image;
+                editingQuizz.questions = answer.data.questions;
+                editingQuizz.levels = answer.data.levels;
+
+                console.log("salvando em quizzes assim: ");
+                console.log(editingQuizz);
+                quizzes.push(editingQuizz);
+
+                loadEditPage('success');
+                showEditPage('success');
+
+                resetEditingQuizz();
+            }).catch(error => {
+                //console.log(error);
+            })
+        }
+        else {
+
+            const id = editingQuizz.id;
+            delete editingQuizz.id;
+
+            if (editingQuizz.key) { delete editingQuizz.key }
+
+            const key = getKeyFromId(id);
+            const link = LINK_QUIZZES + "/" + id;
+            const config = { headers: { "Secret-Key": key } };
+
+            console.log("vamos tentar substituir. enviando assim:");
+            console.log(editingQuizz);
+
+            axios.put(link, editingQuizz, config).then(answer => {
+                //conseguiu substituir
+                console.log("substituido! segue a resposta: ");
+                console.log(answer.data);
+
+                editingQuizz = {};
+                editingQuizz.title = answer.data.title;
+                editingQuizz.image = answer.data.image;
+                editingQuizz.questions = answer.data.questions;
+                editingQuizz.levels = answer.data.levels;
+                editingQuizz.id = answer.data.id;
+
+                console.log("vamos substituir localmente por essa versao");
+                console.log(editingQuizz);
+                quizzes.filter(quizz => !(quizz.id === editingQuizz.id))
+                quizzes.push(editingQuizz);
+                console.log("segue todos os quizzes");
+                console.log(quizzes);
+
+                loadEditPage('success');
+                showEditPage('success');
+
+                resetEditingQuizz();
+            }).catch(error => {
+                console.log("deu erro:");
+                console.log(error)
+            })
+        }
     }
 }
 
-function goHomeFromSuccessPage(){
+function goHomeFromSuccessPage() {
     resetEditingQuizz();
     refreshQuizzes();
 }
@@ -1086,7 +1165,7 @@ function newQuizz(title, image, questions, levels) {
         ]
     }
 
-    return {title: "", image: "", questions: questions, levels: levels };
+    return { title: "", image: "", questions: questions, levels: levels };
 }
 
 function newQuestion(title, color, answers) {

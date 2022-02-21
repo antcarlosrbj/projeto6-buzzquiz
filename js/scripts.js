@@ -57,12 +57,12 @@ pullFromLocalStorage();
 // --------- prebuilt models -------
 
 
-const meuQuizz = {
+const quizzModelo1 = {
     title: "Meu primeiro quizz teste? Vamos lá?",
     image: "https://imagens.brasil.elpais.com/resizer/A_AIZejFb4KXwd9h9fay-Ruft70=/414x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/WZF3MMB4ONHUTB5KBSMFZ7L2OI.JPG",
     questions: [
         {
-            title: "Qual o meu nome? Vamos lá!!!",
+            title: "Pergunta de número 1 - o que será?",
             color: "#480372",
             answers: [
                 {
@@ -83,7 +83,7 @@ const meuQuizz = {
             ]
         },
         {
-            title: "Título da pergunta 2",
+            title: "Pergunta de número 2 - o que será?",
             color: "#049824",
             answers: [
                 {
@@ -104,7 +104,7 @@ const meuQuizz = {
             ]
         },
         {
-            title: "Título da pergunta 3",
+            title: "Pergunta de número 3 - o que será?",
             color: "#908432",
             answers: [
                 {
@@ -141,53 +141,7 @@ const meuQuizz = {
     ]
 }
 
-const meuQuizz2 = {
-    title: 'O quão carioca você é? Teste seus conhecimentos de cria!',
-    image: 'https://static.mundoeducacao.uol.com.br/mundoeducacao/2021/03/1-cristo-redentor.jpg',
-    questions: [
-        {
-            title: 'Qualquer perguntinha marota pq o teste é real', color: '#000000',
-            answers: [
-                { text: 'Rexposta certa de cria', isCorrectAnswer: true, image: 'https://i.pinimg.com/736x/56/4e/62/564e62fef96c4ef0d67a59c94b1a6288.jpg' },
-                { text: 'Resposta errada de nerd', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg' },
-                { text: 'Marola nao po ta maluco', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg' },
-                { text: 'Nerd loka bro pego a visao?', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg' }
-            ]
-        },
-        {
-            title: 'Segunda perguntinha pra marolar...', color: '#000000',
-            answers: [
-                { text: 'Rexposta certa de cria', isCorrectAnswer: true, image: 'https://i.pinimg.com/736x/56/4e/62/564e62fef96c4ef0d67a59c94b1a6288.jpg' },
-                { text: 'Resposta errada de nerd', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg' },
-                { text: 'Marola nao po ta maluco', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg' },
-            ]
-        },
-        {
-            title: 'Essa terceira é braba tá?', color: '#000000',
-            answers: [
-                { text: 'Rexposta certa de cria', isCorrectAnswer: true, image: 'https://i.pinimg.com/736x/56/4e/62/564e62fef96c4ef0d67a59c94b1a6288.jpg' },
-                { text: 'Resposta errada de nerd', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg' },
-                { text: 'Marola nao po ta maluco', isCorrectAnswer: false, image: 'https://psalm.escreveronline.com.br/wp-content/upl…014/12/bigstock-Shocked-Computer-Nerd-1520709.jpg' },
-            ]
-        }
-    ],
-    levels: [
-        {
-            title: "100% CRIA das casinha",
-            text: "ta maluco po. vc é 100% cria irmaozinho. local dos local. norkreina doidao. fechamento patudo pego a visaozinha?",
-            image: "https://i.ytimg.com/vi/lM3d9f2AGoY/maxresdefault.jpg",
-            minValue: "100",
-        },
-        {
-            title: "nerd loka mao furada",
-            text: "ooooo pode saindo já. vc eh uma negacao tlg?? so seria pior se fose paulista. vacilao mete o pe",
-            image: "https://img.ibxk.com.br/2020/05/13/13105244489120.jpg",
-            minValue: "0",
-        }
-    ]
-}
-
-const prebuiltModels = [meuQuizz, meuQuizz2];
+const prebuiltModels = [quizzModelo1];
 
 
 
@@ -570,7 +524,7 @@ function editQuizz(id) {
         }
     }
     else {
-        const model = modelOptions[getSelectedModelIndex()].quizz; // newQuizz() meuQuizz meuQuizz2
+        const model = modelOptions[getSelectedModelIndex()].quizz;
 
         console.log("criando quizz do modelo a seguir...");
         console.log(model);

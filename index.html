@@ -27,16 +27,16 @@
         <div class="home">
             <div class="yourQuizzesEmpty">
                 <p>Você não criou nenhum quizz ainda :(</p>
-                <button onclick="createNewQuizz()">Criar Quizz</button>
+                <button onclick="createNewQuizz()" data-identifier="create-quizz">Criar Quizz</button>
                 <select class="selectModel"></select>
             </div>
             <div class="yourQuizzes hidden">
                 <div class="titleYourQuizzes">
                     <p>Seus Quizzes</p>
                     <select class="selectModel"></select>
-                    <ion-icon name="add-circle" onclick="createNewQuizz()"></ion-icon>
+                    <ion-icon name="add-circle" onclick="createNewQuizz()" data-identifier="create-quizz"></ion-icon>
                 </div>
-                <div class="quizzes">
+                <div class="quizzes" data-identifier="user-quizzes">
                     <div class="quizz">
                         <div class="gradient"></div>
                         <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
@@ -66,7 +66,7 @@
             <div class="allQuizzes">
                 <p>Todos os Quizzes</p>
                 <div class="quizzes">
-                    <div class="quizz">
+                    <div class="quizz" data-identifier="general-quizzes">
                         <div class="gradient"></div>
                         <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
                         <img src="https://scontent.ccdn.cloud/image/nospoiler/a6d0b152-9718-458f-a0ae-6d1f122e742c/i-simpson-5-1920x1080.jpg"

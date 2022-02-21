@@ -337,7 +337,8 @@ function createQuizzThumbElement(quizz, isUserQuizz, prefix) {
     const element = document.createElement("div");
     element.classList.add("quizz");
     element.id = prefix + quizz.id;
-    //element.addEventListener("click", quizzThumbClicked);
+    
+    element.setAttribute('data-identifier' , 'quizz-card');
 
     if (isUserQuizz) {
         element.innerHTML = `
@@ -409,7 +410,7 @@ function loadQuiz(id) { //answer
 
         for (let i = 0; i < answersArray.length; i++) {
             answers += `
-                    <div class="answer ${answersArray[i].isCorrectAnswer}" onclick="selectAnswer(this)">
+                    <div class="answer ${answersArray[i].isCorrectAnswer}" onclick="selectAnswer(this)" data-identifier="answer">
                         <img src="${answersArray[i].image}" alt="">
                         <p>${answersArray[i].text}</p>
                         <div class="bright"></div>
@@ -418,7 +419,7 @@ function loadQuiz(id) { //answer
         }
 
         playScreen.innerHTML += `
-            <div class="questionBox">
+            <div class="questionBox" data-identifier="question">
                 <div class="question">
                     <p>${quiz.questions[k].title}</p>
                 </div>
@@ -501,7 +502,7 @@ function finished() {
 
 function printResultBox() {
     playScreen.innerHTML += `
-        <div class="resultBox">
+        <div class="resultBox" data-identifier="quizz-result">
             <div class="resultTitle">
                 <p>${finalResult}% de acerto: ${quiz.levels[finalResultLevel].title}</p>
             </div>
@@ -1207,12 +1208,12 @@ function newEditQuestionElement(question, que_pos) {
             <h3>Pergunta ${que_pos + 1}</h3>
             <div>
                 <ion-icon name="trash-outline" onclick="deleteQuestionButtonClicked(${que_pos})"></ion-icon>
-                <ion-icon name="create-outline" onclick="toggleEditSection(this)"></ion-icon>
+                <ion-icon name="create-outline" onclick="toggleEditSection(this)" data-identifier="expand"></ion-icon>
             </div>
         </div>
 
         <div class="editSection-group">
-            <div class="editSection-group-wrapper">
+            <div class="editSection-group-wrapper" data-identifier="question">
                 <!-- inputs geral aqui -->
             </div>
         </div>
@@ -1283,12 +1284,12 @@ function newEditLevelElement(level, lev_pos) {
             <h3>Nível ${lev_pos + 1}</h3>
             <div>
                 <ion-icon name="trash-outline" onclick="deleteLevelButtonClicked(${lev_pos})"></ion-icon>
-                <ion-icon name="create-outline" onclick="toggleEditSection(this)"></ion-icon>
+                <ion-icon name="create-outline" onclick="toggleEditSection(this)" data-identifier="expand"></ion-icon>
             </div>
         </div>
 
         <div class="editSection-group">
-            <div class="editSection-group-wrapper">
+            <div class="editSection-group-wrapper" data-identifier="level">
                 <!-- INPUTS AQUI -->
             </div>
         </div>
